@@ -1,0 +1,6 @@
+NEUROCOGNITION X REDESIGN INSTALLED
+Backup: C:\Users\DELL\OneDrive\Desktop\BAINP\apps\neurocognition\.ui-backups\ncx-redesign-v1-20261120T110715Z
+Changed files:
+C:\Users\DELL\OneDrive\Desktop\BAINP\apps\neurocognition\frontend\cognition.html
+C:\Users\DELL\OneDrive\Desktop\BAINP\apps\neurocognition\frontend\workspace.html
+C:\Users\DELL\OneDrive\Desktop\BAINP\apps\neurocognition\frontend\connected.css

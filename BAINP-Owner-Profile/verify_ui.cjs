@@ -1,0 +1,12 @@
+const fs=require('fs'),assert=require('assert'),{JSDOM}=require('jsdom');
+const dom=new JSDOM('<a class="skip"></a><div id="app"></div>',{url:'http://localhost:3000/#/workspace/participants',runScripts:'outside-only'});
+const w=dom.window;w.structuredClone=structuredClone;w.confirm=()=>true;w.scrollTo=()=>{};
+let src=fs.readFileSync(__dirname+'/payload/apps/neuroaccess/web/app.js','utf8').replace("import {strings} from './i18n.js';","const strings={en:{},ar:{}};").replace('render();void bootstrap();','');
+src+='\nwindow.test={S,defaults,ownerProfileView,openOwnerSection,profileForm,setView:()=>{view="participants"},setStep:n=>setupStep=n};';w.eval(src);
+const t=w.test;t.S.authenticated=true;t.S.checking=false;t.S.person={id:'test',profile:{...t.defaults(),display_name:'Test owner'},revision:1};t.setView();
+let page=t.ownerProfileView();assert(page.textContent.includes('A setup that works for you.'));assert(!page.textContent.includes('Participant directory'));
+t.openOwnerSection('display');let input=w.document.getElementById('field-reduced_motion');assert(input);input.checked=true;input.dispatchEvent(new w.Event('input',{bubbles:true}));assert.equal(t.S.form.reduced_motion,true);assert(t.S.dirty);
+input=w.document.getElementById('field-reduced_motion');input.checked=false;input.dispatchEvent(new w.Event('input',{bubbles:true}));assert.strictEqual(t.S.form.reduced_motion,false);
+t.S.person=null;t.S.form=t.defaults();t.S.edit=true;t.setStep(0);page=t.profileForm();assert.equal(page.querySelectorAll('fieldset:not([hidden])').length,1);assert(page.textContent.includes('Step 1 of 4'));
+t.setStep(3);page=t.profileForm();assert(!page.querySelector('label.check').hidden);assert.equal(page.querySelector('button[type=submit]').textContent,'Create my profile');
+console.log('PASS: profile overview, edit panel, explicit false retention, four-step setup and final consent control.');

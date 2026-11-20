@@ -56,6 +56,16 @@ class NeuroAccessTests(unittest.TestCase):
                 if attempt == 9:
                     raise
                 time.sleep(0.2)
+    def fixture_db(self):
+        """Return the signed-in isolated administrator's active workspace DB."""
+        with closing(sqlite3.connect(self.folder/'identity'/'accounts.sqlite3')) as connection:
+            rows = connection.execute("SELECT id FROM users WHERE email=? AND status='active'", ('test@example.org',)).fetchall()
+        if len(rows) != 1:
+            raise RuntimeError('Expected exactly one active isolated test account')
+        path = self.folder/'identity'/'workspaces'/rows[0][0]/'records.sqlite3'
+        if not path.is_file():
+            raise RuntimeError('Isolated account workspace not initialized: '+str(path))
+        return path
     def request(self,method,path,body=None,status=200,client=None,headers=None):
         req=Request(self.base+'/api'+path,data=json.dumps(body).encode() if body is not None else None,headers={'Content-Type':'application/json','X-NeuroAccess-Request':'1',**(headers or {})},method=method)
         try:

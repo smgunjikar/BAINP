@@ -37,16 +37,16 @@ class DirectTests(ExtendedTests):
             if task=='C05':
                 payload['practice_log']=rows(d['practice']);payload['practice_log'][0]['response']='different'
             if task=='C06':payload['reports']=[dict(source='self',consent=True,authorized=False,answers=[dict(item=i,value='no_change') for i in ['schedule','activities','instructions','routines','concerns']])]
-            with closing(sqlite3.connect(self.folder/'neuroaccess.sqlite3')) as c:
+            with closing(sqlite3.connect(self.fixture_db())) as c:
                 c.execute('UPDATE nc_attempts SET started_at=? WHERE id=?',((datetime.now(timezone.utc)-timedelta(minutes=60)).isoformat(),aid));c.commit()
             saved=self.request('PUT',path+'/result?mode=active',payload)
             if task!='C06':self.assertIn('PRACTICE_NOT_PASSED' if task=='C05' else 'PRACTICE_SKIPPED',saved['summary']['quality_flags'])
             self.assertEqual(saved['preparation']['practice_decision'],decision)
             if task=='C01':
-                with closing(sqlite3.connect(self.folder/'neuroaccess.sqlite3')) as c:c.execute('UPDATE nc_attempts SET finished_at=? WHERE id=?',((datetime.now(timezone.utc)-timedelta(minutes=5)).isoformat(),aid));c.commit()
+                with closing(sqlite3.connect(self.fixture_db())) as c:c.execute('UPDATE nc_attempts SET finished_at=? WHERE id=?',((datetime.now(timezone.utc)-timedelta(minutes=5)).isoformat(),aid));c.commit()
         self.assertEqual(self.request('GET',f'/ncx/sessions/{sid}?mode=active')['status'],'completed')
         self.request('DELETE',f'/participants/{pid}?mode=active',dict(confirm_id=pid,revision=1))
-        with closing(sqlite3.connect(self.folder/'neuroaccess.sqlite3')) as c:self.assertEqual(c.execute('SELECT count(*) FROM nc_preparations').fetchone()[0],0)
+        with closing(sqlite3.connect(self.fixture_db())) as c:self.assertEqual(c.execute('SELECT count(*) FROM nc_preparations').fetchone()[0],0)
         print('PASS: explicit direct starts, failed-practice continuation, prep immutability, flags, mandatory understanding, holds and deletion',flush=True)
     def test_pending_v11_direct_start(self):
         self.request('POST','/login',{'email':'test@example.org','password':'local-test-code'})
@@ -54,7 +54,7 @@ class DirectTests(ExtendedTests):
         cid=str(uuid4());self.request('POST',f'/participants/{pid}/checkins?mode=demo',dict(id=cid,participant_revision=1,instructions_understood=True,acute_warning='no'),201)
         self.request('PUT',f'/checkins/{cid}/practice?mode=demo',PRACTICE)
         sid=str(uuid4());stamp=datetime.now(timezone.utc).isoformat();manifest=json.loads((ROOT/'tests'/'research_v11_manifest.json').read_text())
-        with closing(sqlite3.connect(self.folder/'neuroaccess.sqlite3')) as c:
+        with closing(sqlite3.connect(self.fixture_db())) as c:
             c.execute('INSERT INTO nc_sessions VALUES(?,?,?,?,?,?,?,?,?,?,?)',(sid,cid,pid,'demo','ncx-research-v1.1.0','A','v11-frozen',json.dumps(PROFILE),json.dumps(DEVICE),json.dumps(manifest),stamp))
             c.execute('INSERT INTO nc_attempts VALUES(?,?,?,?,?,?,?,?)',(str(uuid4()),sid,'C01','completed',stamp,stamp,'{}','{}'));c.commit()
         aid=str(uuid4());path=f'/ncx/sessions/{sid}/tasks/C03/attempts/{aid}'
@@ -63,7 +63,7 @@ class DirectTests(ExtendedTests):
         logs=[];offset=0.0
         for e in manifest['C03']['trials']:
             response=e['expected'];logs.append(dict(index=e['index'],stimulus_id=e['stimulus_id'],onset_ms=offset,duration_ms=1200.0,response=response,rt_ms=500.0 if response else None,input='keyboard' if response else None,max_frame_gap_ms=17.0));offset+=1500
-        with closing(sqlite3.connect(self.folder/'neuroaccess.sqlite3')) as c:c.execute('UPDATE nc_attempts SET started_at=? WHERE id=?',((datetime.now(timezone.utc)-timedelta(minutes=5)).isoformat(),aid));c.commit()
+        with closing(sqlite3.connect(self.fixture_db())) as c:c.execute('UPDATE nc_attempts SET started_at=? WHERE id=?',((datetime.now(timezone.utc)-timedelta(minutes=5)).isoformat(),aid));c.commit()
         saved=self.request('PUT',path+'/result?mode=demo',dict(protocol='ncx-research-v1.1.0',status='completed',reason='completed',trials=logs,practice_log=[],reports=[]))
         self.assertIn('PREPARATION_POLICY_AMENDED',saved['summary']['quality_flags']);self.assertIn('PRACTICE_SKIPPED',saved['summary']['quality_flags'])
         record=self.request('GET',f'/ncx/sessions/{sid}?mode=demo');self.assertEqual(record['task_manifests'],manifest)

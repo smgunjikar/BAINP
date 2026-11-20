@@ -1,0 +1,1 @@
+Workspace API verification passed at 2026-11-04T14:47:44.9179093+05:30. Manual C01 browser completion remains a separate check.

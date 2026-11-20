@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NeuroSim &amp; CareLoop · BAINP</title>
+  <link rel="stylesheet" href="/prevention.css">
+  <script src="/prevention.js" defer></script>
+</head>
+<body>
+<main>
+  <header>
+    <a id="home" href="/">BAINP workspace</a>
+    <nav aria-label="Prevention and follow-up"><a id="simLink" href="/neurosim?mode=demo">NeuroSim</a><a id="careLink" href="/careloop?mode=demo">CareLoop</a><a id="guardLink" href="/neuroguard?mode=demo#urgent">Urgent signs</a></nav>
+  </header>
+  <div class="hero">
+    <p class="eyebrow">BAINP · PREVENTION TO FOLLOW-UP</p>
+    <h1 id="title">NeuroSim &amp; CareLoop</h1>
+    <p id="intro">Explore prevention evidence and record the steps agreed with a professional.</p>
+    <div class="actions"><span class="badge" id="modeBadge"></span><button type="button" id="refresh">Refresh workspace</button><a id="demoLink" href="/neurosim?mode=demo">Open fictional workspace</a></div>
+    <p id="status" role="status"></p>
+  </div>
+
+  <section id="sim" hidden>
+    <p class="eyebrow">NEUROSIM · EDUCATION</p><h2>Prepare for a prevention discussion</h2>
+    <p>Topics match eligible observations. Each card links to public guidance and identifies the available source.</p>
+    <form id="preferences">
+      <fieldset>
+        <legend>Practical considerations</legend>
+        <label><input type="checkbox" name="preference" value="mobility"> Mobility and support</label>
+        <label><input type="checkbox" name="preference" value="time"> Schedule</label>
+        <label><input type="checkbox" name="preference" value="access"> Access and cost</label>
+      </fieldset>
+      <button type="submit">Update discussion topics</button>
+    </form>
+    <p id="educationStatus" role="status"></p>
+    <div id="topics" class="cards"></div>
+    <ul id="practical"></ul>
+    <div class="actions"><a id="bodyLink" href="/brain-body?mode=demo">Open BBC-BE context</a><a id="graphLink" href="/neurograph?mode=demo">Inspect NeuroGraph evidence</a><a id="twinLink" hidden>Open NeuroTwin</a></div>
+    <details id="planner" hidden>
+      <summary>Optional local model demonstration</summary>
+      <p>The model can select approved fictional topics for display. The policy controls the published text.</p>
+      <button type="button" id="runModel">Select fictional topics</button><p id="modelStatus" role="status"></p>
+      <ul id="modelTopics"></ul>
+    </details>
+  </section>
+  <section id="scenario" hidden>
+    <p class="eyebrow">NEUROSIM · EXPLORATORY INPUTS</p><h2>Scenario explorer</h2>
+    <p>Compare three hypothetical inputs with the fictional example. This comparison only computes changes in inputs. It has no disease-risk or intervention-effect output.</p>
+    <form id="scenarioForm">
+      <label class="slider" for="activity_minutes">Weekly physical activity <output id="activityValue" for="activity_minutes"></output></label>
+      <input id="activity_minutes" type="range" min="0" max="420" value="210" step="5">
+      <label class="slider" for="sleep_hours">Sleep duration <output id="sleepValue" for="sleep_hours"></output></label>
+      <input id="sleep_hours" type="range" min="0" max="24" value="7" step="0.25">
+      <label class="slider" for="systolic_mmhg">Hypothetical systolic BP <output id="bpValue" for="systolic_mmhg"></output></label>
+      <input id="systolic_mmhg" type="range" min="60" max="240" value="130" step="1">
+      <div class="actions"><button type="submit">Compare inputs</button><button type="button" id="resetScenario">Reset example</button></div>
+    </form>
+    <p id="scenarioStatus" role="status"></p>
+    <div class="table-wrap"><table><thead><tr><th>Input</th><th>Example</th><th>Hypothetical</th><th>Difference</th></tr></thead><tbody id="scenarioRows"></tbody></table></div>
+  </section>
+
+  <section id="care" hidden>
+    <p class="eyebrow">CARELOOP · LOCAL FOLLOW-UP</p><h2>Concern and follow-up workspace</h2>
+    <p class="notice">No healthcare provider is connected. The operator can record intended next steps and confirmations obtained outside BAINP.</p>
+    <p class="urgent">If you notice sudden warning signs such as facial droop or trouble speaking, call your local emergency number now. In India, call <a href="tel:112">112</a>. <a href="/neuroguard?mode=demo#urgent">See the warning signs</a>.</p>
+    <div class="columns">
+      <div>
+        <h3>Record a concern</h3>
+        <form id="intake">
+          <label class="field">Category <select id="category"><option value="memory">Memory</option><option value="daily_function">Daily function</option><option value="sleep">Sleep</option><option value="other">Other</option></select></label>
+          <label class="field">Concern <textarea id="concern" required minlength="5" maxlength="1000" rows="3"></textarea></label>
+          <button type="button" id="seedDemo" hidden>Fill fictional concern</button>
+          <fieldset id="signs">
+            <legend>Sudden warning signs you noticed</legend>
+            <label><input type="checkbox" value="face"> Facial droop or numbness</label>
+            <label><input type="checkbox" value="limb"> One-sided weakness or numbness</label>
+            <label><input type="checkbox" value="speech"> Trouble speaking or understanding</label>
+            <label><input type="checkbox" value="vision"> Trouble seeing</label>
+            <label><input type="checkbox" value="balance"> Trouble walking or loss of balance</label>
+            <label><input type="checkbox" value="headache"> Severe unexplained headache</label>
+          </fieldset>
+          <p id="safety" role="alert"></p>
+          <label class="field">If you selected no warning signs <select id="screening" required><option value="">Choose an option</option><option value="none_selected">None selected</option><option value="unsure">Unsure about other concerns</option></select></label>
+          <label class="check"><input type="checkbox" id="consent" required> I agree to store this concern and its follow-up history locally.</label>
+          <label class="check" id="shareLabel" hidden><input type="checkbox" id="share"> Share dated follow-up and outcome markers with NeuroTwin.</label>
+          <button type="submit">Save concern</button>
+        </form>
+        <p id="intakeStatus" role="status"></p>
+      </div>
+      <div>
+        <h3>Case register</h3>
+        <label class="field">Open case <select id="caseSelect"><option value="">Choose a case</option></select></label>
+        <div id="caseDetail"></div>
+        <form id="event" hidden>
+          <label class="field">Next action <select id="action"></select></label>
+          <label class="field" id="noteLabel">Workflow note <textarea id="note" minlength="5" maxlength="1000" rows="2"></textarea></label>
+          <label class="field" id="referenceLabel" hidden>Outside confirmation reference <input id="reference" minlength="3" maxlength="180" placeholder="Example: local visit or referral reference"></label>
+          <label class="field" id="dueLabel" hidden>Follow-up date <input id="due" type="date"></label>
+          <p id="actionHint" class="small"></p>
+          <button type="submit">Record action</button>
+        </form>
+        <p id="eventStatus" role="status"></p>
+        <ol id="history" class="timeline"></ol>
+      </div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

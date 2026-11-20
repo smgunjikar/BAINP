@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NeuroGraph &amp; NeuroGuard · BAINP</title>
+  <link rel="stylesheet" href="/neuro-evidence.css">
+  <script src="/neuro-evidence.js" defer></script>
+</head>
+<body>
+<main>
+  <header>
+    <a id="back" href="/">BAINP workspace</a><a id="careloopLink" href="/careloop?mode=demo">Open CareLoop</a>
+    <nav aria-label="Evidence workspace">
+      <a href="#evidence">Evidence</a><a href="#guard">Claim review</a><a href="#urgent">Urgent signs</a>
+    </nav>
+  </header>
+  <div class="hero">
+    <p class="eyebrow">BAINP · RESEARCH EVIDENCE WORKSPACE</p>
+    <h1>NeuroGraph <span>&amp;</span> NeuroGuard</h1>
+    <p>Trace a statement to its source, inspect its limits, and see why the policy accepted or withheld it.</p>
+    <div class="actions"><span class="badge" id="mode">Loading</span><button id="refresh">Refresh evidence</button>
+      <a href="/neurograph?mode=demo">Open fictional demo</a><button id="export" disabled>Export reviewed report</button>
+    </div>
+    <p role="status" id="status"></p>
+  </div>
+
+  <section id="urgent" class="urgent">
+    <p class="eyebrow">INDEPENDENT SAFETY PATH</p>
+    <h2>Sudden warning signs</h2>
+    <p><strong>If any of these signs occur, call your local emergency number now. In India, call <a href="tel:112">112</a>.</strong> Seek emergency help even if the symptoms have resolved.</p>
+    <fieldset>
+      <legend>Signs you noticed</legend>
+      <label><input type="checkbox" value="face"> Sudden facial droop or numbness</label>
+      <label><input type="checkbox" value="limb"> Sudden weakness or numbness on one side</label>
+      <label><input type="checkbox" value="speech"> Sudden trouble speaking or understanding speech</label>
+      <label><input type="checkbox" value="vision"> Sudden trouble seeing</label>
+      <label><input type="checkbox" value="balance"> Sudden trouble walking or loss of balance</label>
+      <label><input type="checkbox" value="headache"> Sudden severe headache with no known cause</label>
+    </fieldset>
+    <p id="safetyStatus" role="alert"></p>
+    <p class="small">Selections stay on this page. An empty checklist cannot rule out an emergency.
+      <a href="https://www.cdc.gov/stroke/signs-symptoms/index.html" rel="noreferrer">CDC guidance</a> ·
+      <a href="https://112.gov.in/" rel="noreferrer">India ERSS</a>
+    </p>
+  </section>
+
+  <div id="report" hidden>
+    <section id="evidence">
+      <p class="eyebrow">NEUROGRAPH</p><h2>Evidence and released statements</h2>
+      <div class="actions">
+        <label>Evidence type <select id="filter"><option value="">All types</option></select></label>
+        <span id="count" role="status"></span>
+      </div>
+      <div id="evidenceList" class="cards"></div>
+    </section>
+
+    <section id="guard">
+      <p class="eyebrow">NEUROGUARD</p><h2>Review a proposed claim</h2>
+      <p>Choose a claim type and its evidence. For measurements, enter the exact source value and unit to see how the gate handles discrepancies.</p>
+      <form id="proposal">
+        <div class="inputs">
+          <label>Claim type <select id="claim"></select></label>
+          <label>Evidence <select id="source"></select></label>
+          <label id="valueField">Proposed value <input id="value" type="number" step="any"></label>
+          <label id="unitField">Proposed unit <input id="unit" maxlength="32"></label>
+        </div>
+        <div class="actions"><button type="submit" id="evaluate">Evaluate claim</button>
+          <button type="button" id="falseValue" hidden>Try an invented value</button>
+          <button type="button" id="diagnosis" hidden>Try unsupported diagnosis</button>
+        </div>
+      </form>
+      <div id="decision" role="status"></div>
+    </section>
+
+    <section id="model" hidden>
+      <h2>Optional local model demo</h2>
+      <p>Ollama selects IDs from a fixed fictional report. NeuroGuard releases only the corresponding reviewed statements.</p>
+      <button id="modelButton">Run local demo planner</button>
+      <div id="modelResult" role="status"></div>
+    </section>
+
+    <section>
+      <p class="eyebrow">CROSS-MODULE COVERAGE</p><h2>Connected sources</h2>
+      <p id="coverageState"></p><ul id="coverage"></ul>
+      <h3>What this report establishes</h3><ul id="limits"></ul>
+      <p id="policy" class="small"></p>
+    </section>
+  </div>
+</main>
+</body>
+</html>

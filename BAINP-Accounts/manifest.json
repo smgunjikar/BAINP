@@ -1,0 +1,47 @@
+{
+  "apps/neuroaccess/tests/verify_neuroaccess.py": {
+    "before": [
+      "102f08949c16af7c3b8f3daa6335c9b6590ff95dec02210551c6db76e3b0d58f"
+    ],
+    "after": "b614c0da7b442adb7002198894d4c5996dc0d168ac215a1b85073d4a68a37cc1"
+  },
+  "apps/neuroaccess/backend/accounts.py": {
+    "before": [
+      null
+    ],
+    "after": "683e8db624ca722893e748908a44304817af681e95e81555efa0fd694612abe2"
+  },
+  "apps/neuroaccess/backend/serve_frontend.py": {
+    "before": [
+      "24d45abadea8ccd305a81e429d5d6b8c32b5a11a6c3de25c6a45fbb69f2fdbf1"
+    ],
+    "after": "25b4709ac654ef213e0c8535fc6458b2b621afb87fd2a46df0c07b33dc823c28"
+  },
+  "apps/neuroaccess/backend/api.py": {
+    "before": [
+      "d03dc22f40aed807114412db4564eeca758d3654e2998bbe5457210aa7687e59",
+      "d0920a870e55ea2950095ff50b92a023f1a27a1ddf7fc8daabf1cb51affce68b"
+    ],
+    "after": "e602ef653e55651d0de7e54ed412056c4b5dbb9ec48d9f1c14ca8b4f76ab9105"
+  },
+  "apps/neuroaccess/web/account-ui.js": {
+    "before": [
+      null
+    ],
+    "after": "24e12d6c72f222df979264ea91bfc50dbc4602a47138e153265cf8c06fdccf0a"
+  },
+  "apps/neuroaccess/web/style.css": {
+    "before": [
+      "3fa3270a71014fc8c63e6f89674b7fe31067b899f756f0a9bf2b0d5cfc386aed",
+      "747fdf83572999d7d8e156ee2e4c64eb40fba7743df9b849eb2014325eaf76c3"
+    ],
+    "after": "ceb28281faf7f7cff70439cd4fbc9be37e4f4a092973e33494d4a2e5e80498eb"
+  },
+  "apps/neuroaccess/web/app.js": {
+    "before": [
+      "24e1f03e9b3bdeff4b827c9a43c2c8b411bba444fae4e331ca22f36a44c90a64",
+      "d1217651795f327c7eb40a82b59b12efbd3ab20dc653a40779acb21b6ad30563"
+    ],
+    "after": "788b92960b739a6092b2b312fa204251a14bbcff20e15c91e92241d979c1ddc0"
+  }
+}

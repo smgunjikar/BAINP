@@ -1,0 +1,8 @@
+Fresh NeuroAccess installed at 2026-11-04T15:35:29.4687229+05:30.
+Isolated HTTP/API/storage tests passed during installation.
+Old application archive: C:\Users\DELL\OneDrive\Desktop\BAINP\archive\neuroaccess-legacy-20261104-153529-367
+Manual Windows UI acceptance remains to be completed.
+
+#LOCAL OPERATOR LOGIN CODE: -O6gRAECwcYm_7qHb8n-052h3pP63QNI
+
+& ".\apps\neuroaccess\Start-NeuroAccess.ps1" -Service All

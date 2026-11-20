@@ -1,0 +1,14 @@
+{
+  "apps/neuroaccess/backend/api.py": {
+    "before": "d0920a870e55ea2950095ff50b92a023f1a27a1ddf7fc8daabf1cb51affce68b",
+    "after": "d03dc22f40aed807114412db4564eeca758d3654e2998bbe5457210aa7687e59"
+  },
+  "apps/neuroaccess/web/style.css": {
+    "before": "3fa3270a71014fc8c63e6f89674b7fe31067b899f756f0a9bf2b0d5cfc386aed",
+    "after": "747fdf83572999d7d8e156ee2e4c64eb40fba7743df9b849eb2014325eaf76c3"
+  },
+  "apps/neuroaccess/web/app.js": {
+    "before": "24e1f03e9b3bdeff4b827c9a43c2c8b411bba444fae4e331ca22f36a44c90a64",
+    "after": "d1217651795f327c7eb40a82b59b12efbd3ab20dc653a40779acb21b6ad30563"
+  }
+}

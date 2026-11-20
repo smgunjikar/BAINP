@@ -1,0 +1,52 @@
+{
+  "registry_version": "bainp-dataset-registry-v1",
+  "policy": {
+    "cross_dataset_participant_linkage": "prohibited_without_verified_linkage",
+    "public_demo_source": "synthetic",
+    "research_artifact_release": "requires_dataset_terms_and_disclosure_review"
+  },
+  "datasets": [
+    {
+      "id": "bainp-synthetic",
+      "version": "v1",
+      "kind": "synthetic",
+      "manifest": "data/synthetic/cohort_v1.json",
+      "sha256": "c36df21e2285230fd8f564815bb9ecb0883fac728cadf1f8767d454bdcc54ebf",
+      "intended_use": "scripted application demonstration",
+      "validation_scope": "generation repeatability and provenance fields",
+      "database_import_status": "pending"
+    },
+    {
+      "id": "oasis2",
+      "kind": "research",
+      "version": null,
+      "intended_use": "longitudinal MRI research",
+      "access_and_release_review": "pending",
+      "artifact_qc_status": "pending"
+    },
+    {
+      "id": "adni",
+      "kind": "research",
+      "version": null,
+      "intended_use": "separate longitudinal progression benchmark",
+      "access_and_release_review": "pending",
+      "artifact_qc_status": "pending"
+    },
+    {
+      "id": "openneuro-ds004504",
+      "kind": "research",
+      "version": null,
+      "intended_use": "EEG spectral research and recorded replay",
+      "access_and_release_review": "pending",
+      "artifact_qc_status": "pending"
+    },
+    {
+      "id": "pads",
+      "kind": "research",
+      "version": null,
+      "intended_use": "smartwatch movement research",
+      "access_and_release_review": "pending",
+      "artifact_qc_status": "pending"
+    }
+  ]
+}

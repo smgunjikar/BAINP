@@ -1,0 +1,26 @@
+{
+  "apps/neuroquest/backend/engine.py": {
+    "before": [
+      "3b5f5ed139c9d4cc66e01fb65f281ddb100696120c5ecd90d3c8bba327a58341"
+    ],
+    "after": "3f21fc16208cf7e0559a1e3153671189ddc1163bfa9685708cedf2d3b2221e70"
+  },
+  "apps/neuroaccess/backend/accounts.py": {
+    "before": [
+      "e3613623dd0b5b6afc72ad228535c4d856651bb8579b54d82e5f43812b8fd144"
+    ],
+    "after": "0009e0fa80ca5832c401db927cfa78efe29d2565ee6ec04967f1c98fefa1f541"
+  },
+  "apps/neuroaccess/web/account-ui.js": {
+    "before": [
+      "57b2f6c70aa20f7f436a90f15197bf583df177896ea5d74b266c08b9b1804989"
+    ],
+    "after": "fffe86c81bbcc64dab5dce65b241b119a153f78c8736e59000c8dc8021b06c77"
+  },
+  "apps/neuroaccess/web/app.js": {
+    "before": [
+      "da8a46aacf70532a59affcf80216374b7211f72e678f474c60cb840638a49467"
+    ],
+    "after": "9d921ec91d8b733d909abec47fa04ab161c7c95380d221ce6599e52ca5f68996"
+  }
+}

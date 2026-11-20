@@ -50,7 +50,7 @@ class BatteryTests(NeuroAccessTests):
                 bad=copy.deepcopy(payload);bad['trials'][0]['stimulus_id']='wrong';self.request('PUT',path+'/result?mode=demo',bad,422)
                 bad=copy.deepcopy(payload);bad['trials'][0]['duration_ms']=float('nan');self.request('PUT',path+'/result?mode=demo',bad,422)
             # Test fixture only. Production APIs expose no clock bypass.
-            with closing(sqlite3.connect(self.folder/'neuroaccess.sqlite3')) as c:
+            with closing(sqlite3.connect(self.fixture_db())) as c:
                 stamp=(datetime.now(timezone.utc)-timedelta(minutes=60)).isoformat()
                 c.execute('UPDATE nc_attempts SET started_at=? WHERE id=?',(stamp,aid));c.commit()
             saved=self.request('PUT',path+'/result?mode=demo',payload)
@@ -59,7 +59,7 @@ class BatteryTests(NeuroAccessTests):
             bad=copy.deepcopy(payload);bad['status']='interrupted';bad['reason']='user_stopped';self.request('PUT',path+'/result?mode=demo',bad,409)
             if task=='C05':
                 self.request('PUT',f'/ncx/sessions/{sid}/tasks/C02/attempts/{uuid4()}/start?mode=demo',{'practice_confirmed':True},409)
-                with closing(sqlite3.connect(self.folder/'neuroaccess.sqlite3')) as c:
+                with closing(sqlite3.connect(self.fixture_db())) as c:
                     c.execute("UPDATE nc_attempts SET finished_at=? WHERE session_id=? AND task='C01'",((datetime.now(timezone.utc)-timedelta(minutes=5)).isoformat(),sid));c.commit()
         complete=self.request('GET',f'/ncx/sessions/{sid}?mode=demo');self.assertEqual(complete['status'],'completed');self.assertEqual(len(complete['attempts']),6)
         s2=create(access());self.assertNotEqual(s2['form'],s['form']);self.assertIn('uncalibrated_alternate_form',s2['comparison']['condition_changes'])
@@ -73,7 +73,7 @@ class BatteryTests(NeuroAccessTests):
         items=self.request('GET',f'/ncx/participants/{pid}/sessions?mode=demo')['items'];self.assertEqual(len(items),2)
         self.request('DELETE',f'/participants/{pid}?mode=demo',dict(confirm_id=pid,revision=1))
         self.request('GET',f'/ncx/sessions/{sid}?mode=demo',status=404)
-        with closing(sqlite3.connect(self.folder/'neuroaccess.sqlite3')) as c:
+        with closing(sqlite3.connect(self.fixture_db())) as c:
             self.assertEqual(c.execute('SELECT count(*) FROM nc_attempts').fetchone()[0],0)
             self.assertEqual(c.execute('SELECT count(*) FROM nc_sessions').fetchone()[0],0)
         print('PASS: Core sequence, exact retries, server timing bounds, actual delay, form assignment, immutable results, holds, interruptions, restart persistence, mode isolation and deletion',flush=True)

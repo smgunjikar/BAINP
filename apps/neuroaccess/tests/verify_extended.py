@@ -27,7 +27,7 @@ class ExtendedTests(BatteryTests):
                 # Core path already exercised by inherited tests. Populate validated
                 # fixture rows here only to reach the extended API pathways quickly.
                 if task not in ['C07','C08','C09','C10','C11','C12']:
-                    with closing(sqlite3.connect(self.folder/'neuroaccess.sqlite3')) as c:
+                    with closing(sqlite3.connect(self.fixture_db())) as c:
                         stamp=(datetime.now(timezone.utc)-timedelta(minutes=60)).isoformat()
                         c.execute('INSERT INTO nc_attempts VALUES(?,?,?,?,?,?,?,?)',(str(uuid4()),sid,task,'completed',stamp,stamp,'{}','{}'));c.commit()
                     continue
@@ -49,7 +49,7 @@ class ExtendedTests(BatteryTests):
                         out.append(dict(index=e['index'],stimulus_id=e['stimulus_id'],onset_ms=offset,duration_ms=duration,response=response,rt_ms=rt,input='keyboard',max_frame_gap_ms=17.0,presentations=presentations,study_duration_ms=study));offset+=duration+300
                     return out
                 payload=dict(protocol=VERSION,status='completed',reason='completed',trials=[],practice_log=[],reports=[],extra_trials=observations(d['trials']),extra_practice_runs=[observations(d['practice'])] if d['practice_required'] else [])
-                with closing(sqlite3.connect(self.folder/'neuroaccess.sqlite3')) as c:c.execute('UPDATE nc_attempts SET started_at=? WHERE id=?',((datetime.now(timezone.utc)-timedelta(minutes=60)).isoformat(),aid));c.commit()
+                with closing(sqlite3.connect(self.fixture_db())) as c:c.execute('UPDATE nc_attempts SET started_at=? WHERE id=?',((datetime.now(timezone.utc)-timedelta(minutes=60)).isoformat(),aid));c.commit()
                 if task=='C09':payload['extra_trials'][0]['response']='unlisted plausible synonym'
                 if task=='C07':
                     bad=copy.deepcopy(payload);bad['extra_trials'][0]['presentations'][0]['cell']=(bad['extra_trials'][0]['presentations'][0]['cell']+1)%9
@@ -76,7 +76,7 @@ class ExtendedTests(BatteryTests):
         sid=str(uuid4());aid=str(uuid4());stamp=datetime.now(timezone.utc).isoformat()
         manifest=json.loads((ROOT/'tests'/'core_v1_manifest.json').read_text())
         old=dict(protocol='ncx-core-pattern-v1.0.0',status='interrupted',reason='page_reload',trials=[],practice_log=[],practice_interrupted_runs=[],reports=[])
-        with closing(sqlite3.connect(self.folder/'neuroaccess.sqlite3')) as c:
+        with closing(sqlite3.connect(self.fixture_db())) as c:
             c.execute('INSERT INTO nc_sessions VALUES(?,?,?,?,?,?,?,?,?,?,?)',(sid,cid,pid,'demo','ncx-core-pattern-v1.0.0','A','legacy-fixture',json.dumps(PROFILE),json.dumps(DEVICE),json.dumps(manifest),stamp))
             c.execute('INSERT INTO nc_attempts VALUES(?,?,?,?,?,?,?,?)',(aid,sid,'C01','interrupted',stamp,stamp,json.dumps(old),json.dumps({'quality_flags':['INTERRUPTED'],'clinical_score':None})));c.commit()
         record=self.request('GET',f'/ncx/sessions/{sid}?mode=demo');self.assertEqual(record['order'],['C01','C03','C04','C05','C02','C06']);self.assertEqual(record['protocol'],'ncx-core-pattern-v1.0.0');self.assertEqual(record['task_manifests'],manifest)

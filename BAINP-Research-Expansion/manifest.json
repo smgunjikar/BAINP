@@ -1,0 +1,44 @@
+{
+  "apps/neuroaccess/backend/accounts.py": {
+    "before": [
+      "0009e0fa80ca5832c401db927cfa78efe29d2565ee6ec04967f1c98fefa1f541"
+    ],
+    "after": "ec52a1fee283f519c80495ab7bb2ecbdc7498148c04e94722337d0fa758d2ceb"
+  },
+  "apps/neuroaccess/backend/research_lab.py": {
+    "before": [
+      null
+    ],
+    "after": "cb03d15192cec0b49c4e61f0bff35fdf03e039328fd3c21d793484f023b8c825"
+  },
+  "apps/neuroaccess/web/research-ui.js": {
+    "before": [
+      null
+    ],
+    "after": "608bc51172efd8848f704f68833c642c5feec9256a60eb99c4939e6aec935afa"
+  },
+  "apps/neuroaccess/web/account-ui.js": {
+    "before": [
+      "fffe86c81bbcc64dab5dce65b241b119a153f78c8736e59000c8dc8021b06c77"
+    ],
+    "after": "e9d08869cc21bca1d2f8270f0128cf852bf7e7990e6c80a4db03e72a98311f1c"
+  },
+  "apps/neuroaccess/web/app.js": {
+    "before": [
+      "9d921ec91d8b733d909abec47fa04ab161c7c95380d221ce6599e52ca5f68996"
+    ],
+    "after": "fa3d7fa0efb48a396cd1589e98b81fa2b7d223ca0ca1aa710131d152202ceeaf"
+  },
+  "apps/neuroaccess/web/research-audio.js": {
+    "before": [
+      null
+    ],
+    "after": "3f5e8732bf4eddda7d523400cba15fc89d67e4246be6e7b4f957713f95631202"
+  },
+  "apps/neuroaccess/web/research-ui.css": {
+    "before": [
+      null
+    ],
+    "after": "1716d0a1ebe939aea63cea12c56902bdef4d99d7c91b11ae0c9d3576c5e8b07e"
+  }
+}

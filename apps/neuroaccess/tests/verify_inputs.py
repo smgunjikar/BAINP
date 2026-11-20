@@ -17,13 +17,13 @@ class InputTests(DirectTests):
         self.request('PUT',f'/checkins/{cid}/practice?mode=demo',PRACTICE)
         s=self.request('POST',f'/ncx/checkins/{cid}/sessions?mode=demo',dict(id=str(uuid4()),device=DEVICE,battery='full',motor_ack=True),201)
         # Isolated fixture arrangement to reach C09 without running all prior tasks.
-        with closing(sqlite3.connect(self.folder/'neuroaccess.sqlite3')) as c:
+        with closing(sqlite3.connect(self.fixture_db())) as c:
             for task in s['order'][:s['order'].index('C09')]:
                 c.execute('INSERT INTO nc_attempts VALUES(?,?,?,?,?,?,?,?)',(str(uuid4()),s['id'],task,'completed',s['created_at'],s['created_at'],'{}','{}'))
             c.commit()
         aid=str(uuid4());path=f"/ncx/sessions/{s['id']}/tasks/C09/attempts/{aid}"
         self.request('PUT',path+'/start?mode=demo',dict(preparation_policy='optional-practice-v1',understanding_confirmed=True,practice_decision='skipped',input_capture_version='input-v2'))
-        with closing(sqlite3.connect(self.folder/'neuroaccess.sqlite3')) as c:c.execute('UPDATE nc_attempts SET started_at=? WHERE id=?',((datetime.now(timezone.utc)-timedelta(minutes=10)).isoformat(),aid));c.commit()
+        with closing(sqlite3.connect(self.fixture_db())) as c:c.execute('UPDATE nc_attempts SET started_at=? WHERE id=?',((datetime.now(timezone.utc)-timedelta(minutes=10)).isoformat(),aid));c.commit()
         return pid,s,aid,path
     def logs(self,d):
         records=[]
@@ -55,7 +55,7 @@ class InputTests(DirectTests):
         self.assertEqual(a['submitted']['extra_trials'],logs);self.assertEqual(len(a['reviews']),3)
         self.request('GET',f"/ncx/sessions/{s['id']}?mode=active",status=404)
         self.request('DELETE',f'/participants/{pid}?mode=demo',dict(confirm_id=pid,revision=1))
-        with closing(sqlite3.connect(self.folder/'neuroaccess.sqlite3')) as c:
+        with closing(sqlite3.connect(self.fixture_db())) as c:
             self.assertEqual(c.execute('SELECT count(*) FROM nc_input_checkpoints').fetchone()[0],0);self.assertEqual(c.execute('SELECT count(*) FROM nc_response_reviews').fetchone()[0],0)
         print('PASS: six exact raw answers, 3 dictionary matches + 3 reviewed incorrect, persisted checkpoints/restart, immutable reviews and deletion',flush=True)
     def test_preserved_draft(self):
