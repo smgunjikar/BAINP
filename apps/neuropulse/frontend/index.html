@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#081421"><title>BAINP | NeuroPulse Research</title>
+<link rel="stylesheet" href="/neuropulse.css?v=3.7">
+<script src="/neuropulse.js" defer></script><script src="/neuropulse-research.js" defer></script>
+</head>
+<body class="np-v4">
+<a class="np-skip" href="#np-content">Skip to NeuroPulse content</a>
+<div class="np-shell">
+<aside class="np-sidebar" aria-label="BAINP engines">
+  <a class="np-brand" href="/"><span class="np-brand-mark">◈</span><span><strong>BAINP</strong><small>BRAIN INTELLIGENCE</small></span></a>
+  <div class="np-sidebar-label">YOUR WORKSPACE</div>
+  <a href="/">Overview</a><a href="/neurocontinuum">NeuroContinuum</a><a href="/neuroquest">NeuroQuest</a>
+  <div class="np-sidebar-label">RESEARCH ENGINES</div>
+  <a class="active" aria-current="page" href="/neuropulse?mode=active">NeuroPulse</a>
+  <a href="/neurovision">NeuroVision</a><a href="/neurotwin">NeuroTwin</a><a href="/neurosense">NeuroSense</a>
+  <div class="np-sidebar-label">TRUST & CARE</div>
+  <a href="/neuroguard">NeuroGuard</a><a href="/neuroproof">NeuroProof</a><a href="/arena">NeuroSignal ARENA</a><a href="/careloop">CareLoop</a>
+  <div class="np-sidebar-bottom"><span class="np-live-dot"></span> Local research environment<br><small>Not a clinical diagnosis</small></div>
+</aside>
+<div class="np-page">
+<header class="np-topbar"><div class="np-top-title">NeuroPulse / Research Workspace</div><div class="np-top-actions"><span class="np-pill">Research mode</span><a href="/">Back to workspace</a></div></header>
+<main id="np-content">
+  <section class="np-hero"><div><p class="eyebrow">EEG RESEARCH INTELLIGENCE · V3</p><h1>NeuroPulse <span>Research</span></h1><p>Explore prepared EEG replays, source-linked spectral research results, and transparent quality evidence.</p><div class="np-hero-actions"><a class="np-primary" href="#replay-studio">Open replay studio</a><a class="np-secondary" href="#np-main-research">Explore EEG cohort</a></div></div><div class="np-hero-signal" aria-hidden="true"><svg viewBox="0 0 320 128" preserveAspectRatio="none"><path d="M0 64L25 64 34 58 42 70 52 63 73 63 83 31 89 106 96 46 103 64 127 64 136 58 145 69 154 64 171 64 181 52 191 74 201 64 222 64 232 42 241 88 249 63 270 63 280 56 289 69 300 64 320 64" fill="none" stroke="currentColor" stroke-width="2"/></svg><div>RECORD · REVIEW · UNDERSTAND</div></div></section>
+  <section class="np-stat-row" aria-label="Previously processed research run">
+    <article><small>Research cohort</small><strong>88</strong><span>OpenNeuro recordings</span></article>
+    <article><small>Features</small><strong>79</strong><span>Descriptive available</span></article>
+    <article><small>Review required</small><strong>9</strong><span>Insufficient windows</span></article>
+    <article><small>Clinical release</small><strong>0</strong><span>No EEG records approved</span></article>
+  </section>
+  <div class="np-alert" role="note"><strong>Not for diagnosis</strong><span>These are previously generated descriptive EEG features, not a medical diagnosis. OpenNeuro subject IDs have no verified link to BAINP participant identities. Counts above describe the last uploaded run, not a live API query.</span></div>
+  <div class="np-layout">
+   <div class="np-main-col">
+    <section class="np-card" id="replay-studio"><div class="np-card-head"><div><span class="np-kicker">01 / SIGNAL LAB</span><h2>EEG waveform replay</h2><p id="source" class="np-muted">Prepared research replay</p></div><span class="np-tag">Pre-recorded</span></div>
+    <nav class="np-mode-switch" aria-label="NeuroPulse mode"><a href="/neuropulse?mode=active">Research replay</a><a href="/neuropulse?mode=demo">Synthetic lab</a></nav>
+    <div aria-label="Recording source" class="controls np-recording-control"><label>Recording<select id="recording" disabled></select></label><label id="import" hidden>Open local replay JSON<input id="file" type="file" accept=".json"></label><p id="status" role="status">Loading recordings…</p></div>
+    <div id="viewer" hidden><h3 id="title">EEG waveform</h3><div class="controls np-player"><button id="play" type="button">Play replay</button><button id="reset" type="button">Restart</button><label>Channel<select id="channel"></select></label><label>Speed<select id="speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label></div><div class="np-chart"><canvas id="wave" width="1200" height="300" role="img" aria-label="Filtered EEG waveform in microvolts"></canvas></div><label class="scrub np-scrub">Replay position <output id="clock"></output><input id="seek" type="range" min="0" step="any" value="0"></label><p id="scale" class="np-muted"></p></div>
+    </section>
+    <div class="np-two-col"><section class="np-card"><div class="np-card-head"><div><span class="np-kicker">02 / SPECTRAL</span><h2>Frequency profile</h2></div></div><p class="np-muted">Band estimates from the prepared replay excerpt.</p><div id="features"></div></section><section class="np-card"><div class="np-card-head"><div><span class="np-kicker">03 / EVIDENCE</span><h2>Evidence & quality</h2></div></div><div id="quality"></div><details><summary>Recording provenance</summary><dl id="provenance"></dl></details></section></div>
+   </div>
+   <aside class="np-right-col" aria-label="Research workflow"><section class="np-card np-guide"><span class="np-kicker">INTERCONNECTED ENGINES</span><h2>Research journey</h2><p>NeuroPulse research observations stay separate from participant diagnosis and routine assessments.</p><div class="np-step"><b>1</b><div><strong>Record & inspect</strong><small>NeuroPulse signal viewer</small></div></div><div class="np-step"><b>2</b><div><strong>Interpret limitations</strong><small>NeuroGuard restrictions</small></div></div><div class="np-step"><b>3</b><div><strong>Trace provenance</strong><small>NeuroProof evidence</small></div></div><div class="np-step"><b>4</b><div><strong>Validate research</strong><small>NeuroSignal ARENA</small></div></div><p class="np-disclaimer">These links are navigation, not verified live engine-to-engine data transfers.</p></section><section class="np-card"><span class="np-kicker">DIRECT ACCESS</span><div class="np-quicklinks"><a href="/neuroproof">View NeuroProof</a><a href="/neuroguard">Review NeuroGuard</a><a href="/neurotwin">Open NeuroTwin</a><a href="/neurocontinuum">Participant journey</a></div></section></aside>
+  </div>
+  <section id="np-main-research" class="np-card np-research" hidden aria-label="Processed EEG research cohort"><div class="np-card-head"><div><span class="np-kicker">04 / COHORT INTELLIGENCE</span><h2>Processed EEG research cohort</h2><p class="np-muted">A protected, read-only view of the existing research result files.</p></div><span class="np-tag">Access controlled</span></div><div class="np-connect"><label>Research access key<input id="np-research-key" type="password" autocomplete="off" placeholder="Enter local research key" spellcheck="false"></label><button id="np-connect" type="button">Load processed EEG data</button><span class="np-muted">Existing BAINP sign-in also required.</span></div><p id="np-research-status" role="status">Research authorization required. EEG data are not loaded.</p><div id="np-cohort-data" hidden><div class="np-cohort-controls"><label>Find subject<input id="np-subject-search" type="search" placeholder="e.g. sub-001"></label><label>Processing status<select id="np-status-filter"><option value="all">All records</option><option value="DESCRIPTIVE_AVAILABLE">Descriptive available</option><option value="INSUFFICIENT_WINDOWS">Insufficient windows</option><option value="FAILED">Failed</option></select></label></div><div class="np-table-scroll"><table id="np-research-table"><caption>Read-only EEG subject features</caption></table></div><p id="np-result-count" class="np-muted" aria-live="polite"></p><div id="np-research-detail" aria-live="polite" class="np-subject-detail"></div></div></section>
+  <section id="research" class="np-card" hidden><h2>Cohort benchmark</h2><p id="benchmark" role="status">Loading benchmark…</p></section>
+  <footer class="np-footer">BAINP 3.0 · NeuroPulse X V3 · Research signals are not a substitute for clinical assessment.</footer>
+</main></div></div></body></html>

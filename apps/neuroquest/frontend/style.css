@@ -1,0 +1,59 @@
+:root{font-family:Segoe UI,Arial,sans-serif;color:#173b36;background:#f4f6f0;font-size:16px}*{box-sizing:border-box}body{margin:0}aside{position:fixed;inset:0 auto 0 0;width:238px;background:#153e38;color:#fff;padding:32px 25px}.brand{font-size:24px;font-weight:650}small{display:block;font-size:9px;letter-spacing:2px;margin-top:12px;color:#b2c8be}nav{display:grid;gap:22px;margin-top:65px}a{color:#226356}nav a{color:#d0e2d8;text-decoration:none;font-size:14px}.aside-note{position:absolute;bottom:35px;font-size:12px;line-height:1.8;color:#b2c8be}header{margin-left:238px;padding:25px 42px;border-bottom:1px solid #dae2d8;display:flex;justify-content:space-between;background:#fff;font-size:13px}main{margin-left:238px;padding:45px;max-width:1500px}.eyebrow{letter-spacing:2px;font-size:10px;font-weight:700;color:#668275}h1{font-size:48px;font-weight:600;letter-spacing:-2px;line-height:1.1;margin:18px 0}h2{font-size:20px;margin-top:0}p{line-height:1.7;font-size:14px}.lead{color:#62796c;max-width:680px}.layout{display:grid;grid-template-columns:1fr 1.1fr;gap:24px;margin:30px 0}section{padding:28px;background:white;border:1px solid #dfe5db;border-radius:14px;margin-bottom:24px;box-shadow:0 4px 15px #173b3604}label{display:block;font-size:13px;margin:20px 0}select{display:block;width:100%;margin-top:9px;padding:12px;border:1px solid #c6d5c9;border-radius:7px;background:#fff;color:inherit;font:inherit}.check{display:flex;align-items:flex-start;gap:8px;line-height:1.6}button{background:#246552;color:white;border:1px solid #246552;padding:13px 19px;border-radius:7px;font:inherit;cursor:pointer}button:disabled{opacity:.5;cursor:wait}.secondary{background:white;color:#246552}#message{padding:14px;background:#e7eee1;border-radius:7px}.recommendation{background:#edf2e7;min-height:275px}.badge{display:inline-block;background:#d6e4cc;padding:7px 12px;border-radius:30px;text-transform:uppercase;font-size:12px;margin:20px 0}pre{overflow:auto;white-space:pre-wrap;word-break:break-word;font-size:11px;max-height:420px}details{border-top:1px solid #dae4d7;padding:15px 0}summary{cursor:pointer;font-size:14px}.muted,footer{color:#667e70;font-size:12px}.section-head{display:flex;justify-content:space-between;align-items:center}#links{display:flex;gap:16px;flex-wrap:wrap}#result a{display:inline-block;margin:10px 12px 0 0}#identity{font-size:12px;color:#667e70}.skip{position:absolute;top:-60px}.skip:focus{top:0;background:white;padding:15px;z-index:10}:focus-visible{outline:3px solid #a97924;outline-offset:4px}@media(max-width:950px){aside{position:relative;width:auto;padding:20px}nav{display:flex;flex-wrap:wrap;gap:16px;margin-top:25px}.aside-note{display:none}header,main{margin-left:0}main{padding:24px}.layout{grid-template-columns:1fr}h1{font-size:38px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+
+/* v1.1: readable evidence, compact cards, and distinct safety override. */
+.layout{align-items:start}.layout>section{margin-bottom:0}.layout>div{min-width:0}section{min-width:0}h2{line-height:1.4}h3{font-size:16px}#result h2{font-size:25px;margin:14px 0}.recommendation{min-height:300px}.recommendation.urgent{background:#fff4ec;border-color:#d29c78}.urgent .badge{background:#f5d8c5;color:#733419}.guidance{padding:18px;background:#fff;border-left:4px solid #a04c27;border-radius:6px;margin:20px 0}.guidance p{font-size:17px;line-height:1.7;margin-bottom:0}.source-link{display:block!important;font-size:12px}.facts{display:grid;grid-template-columns:minmax(110px,1fr) 2fr;gap:10px 16px;font-size:13px}.facts dt{color:#62796c}.facts dd{margin:0;overflow-wrap:anywhere}.evidence{margin-top:20px}.evidence summary{font-weight:600}.history-item{padding:18px 0}.history-item summary{line-height:1.6}#result .outcome{font-weight:600}.safety-notice{padding:15px;border:1px solid #d29c78;background:#fff4ec;font-size:14px;line-height:1.6;border-radius:7px}.safety-notice[hidden]{display:none}#message.error{background:#fff0e8;color:#7a351b}select:disabled{opacity:.6;background:#f2f3ef}#result a{padding:8px 0}main{max-width:1600px}button{line-height:1.5}#catalogue{overflow-wrap:anywhere}
+
+/* V2: shared BAINP cream, peach and charcoal direction. */
+:root{color:#20211f;background:#faf7f3}aside{background:#fff3e9;color:#20211f;border-right:1px solid #e6dcd4}nav a{color:#292a27}small,.aside-note,.eyebrow,.muted,footer,.lead,.facts dt,#identity{color:#5e655f}a{color:#292a27}button{background:#181917;border-color:#181917;border-radius:999px}.secondary{color:#20211f;border-color:#cfc6be}section{border-color:#e0d9d3;border-radius:22px;box-shadow:none}.recommendation{background:#ffeadb}.badge{background:#ffdbc3;color:#292a27}#message{background:#f0ece6}header{background:#faf7f3;border-color:#e0d9d3}select{min-height:46px;border-radius:12px;border-color:#ccc5be}h1{font-weight:650}button:disabled{cursor:not-allowed}#result a{min-height:44px}.check input{width:19px;height:19px;flex-shrink:0}summary{min-height:40px}:focus-visible{outline:3px solid #ae4d19;outline-offset:3px}@media(max-width:600px){main{padding:18px}section{padding:20px}.facts{grid-template-columns:1fr}.facts dd{margin-bottom:8px}h1{font-size:32px}}
+
+/* BAINP_NQ_SIDEBAR_REPAIR_V2_BEGIN */
+/* Scope strictly to NeuroQuest's existing aside and its own child navigation.
+   Works whether BAINP has wrapped the existing <aside> or not. */
+aside:has(> .brand):has(> #nav),
+aside:has(> .brand):has(> nav#nav) {
+  background: radial-gradient(ellipse 125% 38% at 106% 33%, rgba(94, 165, 137, .28) 0%, transparent 72%),
+              radial-gradient(ellipse 100% 43% at -20% 77%, rgba(61, 145, 112, .22) 0%, transparent 75%),
+              linear-gradient(155deg, #224f40 0%, #144736 45%, #0c3328 100%) !important;
+  background-color: #123f32 !important;
+  color: #f7faf7 !important;
+  border-right: 1px solid rgba(231, 255, 238, .18) !important;
+}
+aside:has(> nav#nav) > .brand,
+aside:has(> nav#nav) > .brand small,
+aside:has(> nav#nav) > .aside-note,
+aside:has(> nav#nav) > nav#nav > a {
+  color: #f7faf7 !important;
+}
+aside:has(> nav#nav) > .brand small,
+aside:has(> nav#nav) > .aside-note {color:#c6e1d3 !important;}
+aside:has(> nav#nav) > nav#nav {display:grid;gap:7px;margin-top:48px;}
+aside:has(> nav#nav) > nav#nav > a {
+  display:block;
+  padding:12px 14px;
+  min-height:43px;
+  border:1px solid transparent;
+  border-radius:12px;
+  text-decoration:none;
+  font-size:14px;
+  line-height:1.4;
+  font-weight:600;
+  background:transparent;
+}
+aside:has(> nav#nav) > nav#nav > a:hover,
+aside:has(> nav#nav) > nav#nav > a:focus-visible {
+  color:#ffffff !important;
+  background:rgba(238,255,247,.15) !important;
+  border-color:rgba(238,255,247,.20);
+}
+aside:has(> nav#nav) > nav#nav > a.active,
+aside:has(> nav#nav) > nav#nav > a[aria-current="page"] {
+  color:#133e30 !important;
+  background:#f7f4eb !important;
+  border-color:#f7f4eb !important;
+  font-weight:700;
+}
+aside:has(> nav#nav) > nav#nav > a:focus-visible {outline:3px solid #ffda9a;outline-offset:2px;}
+@media(max-width:950px){
+  aside:has(> nav#nav) > nav#nav {display:flex;flex-wrap:wrap;gap:7px;margin-top:16px;}
+}
+/* BAINP_NQ_SIDEBAR_REPAIR_V2_END */

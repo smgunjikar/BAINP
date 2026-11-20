@@ -1,0 +1,68 @@
+<!-- BAINP_NCX_REDESIGN_V1 -->
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>BAINP · NeuroCognition X</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/battery.css">
+  <link rel="stylesheet" href="/nc-connected.css">
+</head>
+<body class="ncx-ui">
+  <a class="skip" href="#app">Skip to main content</a>
+  <div class="nc-shell">
+    <aside class="nc-sidebar" aria-label="BAINP navigation">
+      <div class="nc-brand">
+        <div class="nc-brand-mark">BAINP 3.0</div>
+        <div class="nc-brand-sub">Brain Health Intelligence Platform</div>
+      </div>
+      <nav class="nc-sidebar-nav">
+        <a data-base="/" href="/">Overview</a>
+        <a data-base="/neurocontinuum" href="/neurocontinuum">NeuroContinuum</a>
+        <a data-base="/neuroquest" href="/neuroquest">NeuroQuest</a>
+        <a data-base="/cognition-dashboard" href="/cognition-dashboard" class="active">NeuroCognition X</a>
+        <a data-base="/neurovision" href="/neurovision">NeuroVision</a>
+        <a data-base="/neuropulse" href="/neuropulse">NeuroPulse</a>
+        <a data-base="/neurosense" href="/neurosense">NeuroSense</a>
+        <a data-base="/neurotwin" href="/neurotwin">NeuroTwin X</a>
+        <a data-base="/neuroguard" href="/neuroguard">NeuroGuard</a>
+        <a data-base="/careloop" href="/careloop">CareLoop</a>
+      </nav>
+      <div class="nc-sidebar-footer">
+        <a data-base="/settings" href="/settings">Settings</a>
+        <a data-base="/help" href="/help">Help & Support</a>
+      </div>
+    </aside>
+    <div class="nc-page">
+      <div class="nc-page-topbar">
+        <div class="nc-page-chip">NeuroCognition X</div>
+        <div class="nc-page-chip subtle">Research cognitive assessment workspace</div>
+      </div>
+      <div id="app"></div>
+    </div>
+  </div>
+  <nav aria-label="Research modules" class="nc-footer-links"><a href="/neurosense">NeuroSense movement research</a></nav>
+  <script>
+  (function(){
+    const qs = new URLSearchParams(location.search);
+    const keep = new URLSearchParams();
+    ['mode','person'].forEach((k)=>{ const v = qs.get(k); if (v) keep.set(k,v); });
+    document.querySelectorAll('.nc-sidebar a[data-base]').forEach((a)=>{
+      const base = a.getAttribute('data-base') || a.getAttribute('href');
+      a.setAttribute('href', keep.toString() ? base + '?' + keep.toString() : base);
+    });
+    const path = location.pathname;
+    document.querySelectorAll('.nc-sidebar a[data-base]').forEach((a)=>{
+      const base = a.getAttribute('data-base');
+      const active = (path === '/cognition' || path === '/cognition-dashboard' || path === '/cognition-results')
+        ? base === '/cognition-dashboard'
+        : path === base;
+      if (active) a.classList.add('active');
+    });
+  })();
+  </script>
+  <script type="module" src="/cognition.js"></script>
+  <script src="/brainbody-return.js" defer></script>
+</body>
+</html>

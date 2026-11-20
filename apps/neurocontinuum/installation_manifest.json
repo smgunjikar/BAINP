@@ -1,0 +1,24 @@
+{
+  "version": "neurocontinuum-native-v1.0.0",
+  "managed_files": {
+    "apps/neuroaccess/backend/neurocontinuum_bridge.py": "f44bed5520aeddde5107d807f342aa509bb0a25ea6a291424b57def08c402495",
+    "apps/neurocontinuum/README.md": "6d54d9509b7984c5ca09e7efdba1f9f7b83052acc4017f842f29a43ccc55ef37",
+    "apps/neurocontinuum/Verify-NeuroContinuum.ps1": "66113ece14d5d92c1c190945607f26710155994da8a1f57d517638c34e6a7140",
+    "apps/neurocontinuum/backend/engine.py": "b6790d0fc4c5da239a3105b0cfb76b3321f828b202dfeb0bc6f6a8f32d0b3e82",
+    "apps/neurocontinuum/backend/ports.py": "40cbb8159ba114e38bc6bbb64140a6f5ff690e29a0309d88f93e0f35b0eaf233",
+    "apps/neurocontinuum/backend/router.py": "aab51f3df806e38a60fac3132c5144216f06bfde74bddcd6ec19158bb105891a",
+    "apps/neurocontinuum/frontend/app.js": "9005d9554c599edd7d9f7ef42fd0d3f4a9223a807fa4346bbe7dde5c691cc1c3",
+    "apps/neurocontinuum/frontend/index.html": "ed9c3fa60c4e7f990bb26815e4ce5b4f862d4a5023cf818edb8000b6cd828412",
+    "apps/neurocontinuum/frontend/style.css": "4b2ec5d852b090e234132cd3c383d4774105d7b03ab96af0969628243c90477b",
+    "apps/neurocontinuum/tests/local_http.py": "4e2314706ee709fcfdb6ef8c5c537c4d08440f2eae7d50a4719b4de80a91f8fb",
+    "apps/neurocontinuum/tests/verify.py": "8e8c8f42a70510fa162b365da3657183b847378cb7e5fe6a62ff7e5d755bf2ea",
+    "apps/neuroguard/backend/continuum_policy.py": "009e89c485716f8a069a59c3262bbed8787b71fcc8f2af14903ff05d647fc574"
+  },
+  "integration_files": [
+    "apps\\neuroaccess\\backend\\api.py",
+    "apps\\neuroaccess\\backend\\serve_frontend.py",
+    "apps\\neuroaccess\\web\\app.js",
+    "apps\\neurotwin\\backend\\router.py",
+    "apps\\platform-core\\backend\\router.py"
+  ]
+}

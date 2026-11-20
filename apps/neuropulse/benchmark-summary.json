@@ -1,0 +1,67 @@
+{
+  "labels": [
+    "A",
+    "C",
+    "F"
+  ],
+  "counts": [
+    17,
+    12,
+    13
+  ],
+  "results": {
+    "majority": {
+      "balanced_accuracy": 0.3333333333333333,
+      "confusion_matrix": [
+        [
+          17,
+          0,
+          0
+        ],
+        [
+          12,
+          0,
+          0
+        ],
+        [
+          13,
+          0,
+          0
+        ]
+      ]
+    },
+    "spectral_logistic": {
+      "balanced_accuracy": 0.3421317244846656,
+      "confusion_matrix": [
+        [
+          12,
+          2,
+          3
+        ],
+        [
+          9,
+          2,
+          1
+        ],
+        [
+          10,
+          1,
+          2
+        ]
+      ]
+    }
+  },
+  "dataset": "OpenNeuro ds004504",
+  "validation": "5-fold participant-stratified internal CV",
+  "segment_seconds": 60,
+  "features": [
+    "delta",
+    "theta",
+    "alpha",
+    "beta"
+  ],
+  "quality_policy": "At least 10 usable channels per window and three usable windows per participant.",
+  "metadata_sha256": "bd17cf02ec9733c9029d4a6d977b2918309b3c667ff9ceb1b5dce6e3cebccbc1",
+  "intended_use": "Cohort research only. No clinical inference or external validation.",
+  "excluded_count": 46
+}

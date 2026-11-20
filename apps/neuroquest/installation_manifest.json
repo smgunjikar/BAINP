@@ -1,0 +1,9 @@
+{
+  "apps/neuroquest/README.md": "65446752b17a8e749f91a7b27465ee92a811a5848303c77bb275c6d476007a40",
+  "apps/neuroquest/tests/verify.py": "b83d9002c07e607d45ea1b9d2341753283ebca2b78c1c6a2730cb16a7031c36e",
+  "apps/neuroquest/backend/engine.py": "3b5f5ed139c9d4cc66e01fb65f281ddb100696120c5ecd90d3c8bba327a58341",
+  "apps/neuroquest/backend/router.py": "a10d01d8f31ca2cecfdf10c009903cba16c7e8ae993569606b072fc4c2eb358e",
+  "apps/neuroquest/frontend/app.js": "b48e2599b01ef9c53b5f1dd3e1b11907b098ae0699100489bcaa9d0da841070f",
+  "apps/neuroquest/frontend/index.html": "c0c6cf9f6a787d1e8109b5378c0801cff3ee31b9692bd7e5e85d9516277af5ac",
+  "apps/neuroquest/frontend/style.css": "c6bd7b263b3d44006ef94c760dedf209edef669159fffc1085289f7321e9d2e3"
+}

@@ -1,0 +1,34 @@
+/* Scoped to the NeuroTwin research connector. Does not change core layouts. */
+.nt-link-section{margin-top:22px;padding:24px;background:#fff;border:1px solid #c6dee0;border-radius:16px;color:#173443}
+.nt-link-section h2{margin:6px 0 10px;font-size:1.4rem;color:#143444}
+.nt-link-section h3{margin:20px 0 10px;font-size:1.05rem}
+.nt-link-section p{line-height:1.5}
+.nt-link-heading{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}
+.nt-link-heading>div{max-width:72ch}
+.nt-link-eyebrow{font-size:10px;letter-spacing:.15em;font-weight:800;color:#067c86}
+.nt-link-nav{font-weight:700;white-space:nowrap;color:#087587}
+.nt-link-controls{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:18px 0}
+.nt-link-controls label{font-weight:700;font-size:.85rem}
+.nt-link-controls input,.nt-link-controls select{border:1px solid #a6c5c9;border-radius:8px;padding:10px;max-width:350px;min-width:135px;background:#fff;color:#12323f}
+.nt-link-controls input[type=password]{min-width:250px;flex:1}
+.nt-link-controls button,.nt-link-heading button,.nt-link-callout button{background:#006e75;border:0;border-radius:8px;padding:11px 16px;color:white;font-weight:700;cursor:pointer}
+.nt-link-controls button:focus-visible,.nt-link-heading button:focus-visible,.nt-link-callout button:focus-visible{outline:3px solid #e3ad44;outline-offset:3px}
+.nt-link-controls button:hover,.nt-link-heading button:hover,.nt-link-callout button:hover{background:#064c5e}
+.nt-link-help{font-size:.79rem;color:#566e7a;flex-basis:100%;overflow-wrap:anywhere}
+.nt-link-status{background:#ecf6f6;border-left:3px solid #067d83;padding:10px 14px;color:#28545f}
+.nt-link-warning{padding:11px 14px;background:#fff5e7;border-left:3px solid #d7a34c;color:#704f20;font-size:.85rem}
+.nt-link-summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.nt-link-metric{display:flex;flex:1 1 170px;flex-direction:column;background:#f2f9fa;padding:14px;border-radius:10px;border:1px solid #d6e6e9}
+.nt-link-metric strong{font-size:1.25rem;color:#075f6d}
+.nt-link-metric span{font-size:.77rem;color:#456673}
+.nt-link-kv{flex:1 1 220px;min-width:0;background:#f7fafb;padding:10px;border:1px solid #e4ecef;display:flex;flex-direction:column;gap:5px}
+.nt-link-kv strong{font-size:.8rem;overflow-wrap:anywhere;color:#1b485c}
+.nt-link-kv span{font-size:.72rem;color:#587382}
+#ntPulseWave{width:100%;height:auto;display:block;background:#091b29;border-radius:10px}
+#ntPulsePSD,#ntHistoryChart{width:100%;height:auto;background:#f9fcfd;border-radius:10px}
+.nt-link-evidence{display:flex;flex-wrap:wrap;gap:10px}
+.nt-link-section details{margin-top:16px}
+.nt-link-section details summary{cursor:pointer;font-weight:650}
+.nt-link-observations{margin:14px 0;color:#2e5563}
+.nt-link-callout{display:flex;gap:14px;align-items:center;justify-content:space-between;border:1px solid #b3d8d8;background:#e9f5f5;border-radius:10px;margin:14px 0;padding:13px;color:#134c59;font-size:.85rem}
+@media(max-width:720px){.nt-link-section{padding:14px}.nt-link-heading,.nt-link-callout{flex-direction:column}.nt-link-controls{align-items:stretch}.nt-link-controls input,.nt-link-controls select{width:100%;max-width:none;min-width:0}}
