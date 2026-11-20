@@ -16,7 +16,7 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 VERSION='neuroaccess-v1'
-ORIGINS={'http://127.0.0.1:3000','http://localhost:3000'}
+ORIGINS={'http://127.0.0.1:3000','http://localhost:3000','https://bainp-research-preview.onrender.com'}
 Mode=Literal['active','demo']
 
 def now(): return datetime.now(timezone.utc).isoformat()
