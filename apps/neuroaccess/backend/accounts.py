@@ -142,7 +142,10 @@ class Accounts:
         folder=self.root/'workspaces'/target;folder.mkdir(parents=True,exist_ok=True)
         path=folder/'records.sqlite3'
         with self.lock:
-            with sqlite3.connect(path) as c:
+            # sqlite3 connection context commits but does not close on Windows.
+            # Explicit closure is required before TemporaryDirectory cleanup.
+            from contextlib import closing
+            with closing(sqlite3.connect(path)) as c, c:
                 c.executescript(self.schema)
                 c.execute('PRAGMA user_version=5')
         return path
