@@ -60,7 +60,7 @@ try:
     frontend = subprocess.Popen(
         [
             sys.executable, str(FRONTEND),
-            
+
             "--port", str(PORT),
         ],
         cwd=ROOT,
