@@ -202,4 +202,4 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--port',type=int,default=3000);parser.add_argument('--api-port',type=int,default=8000);args=parser.parse_args()
     API_PORT=args.api_port
     print(f'NeuroAccess frontend: http://127.0.0.1:{args.port}',flush=True)
-    ThreadingHTTPServer(('127.0.0.1',args.port),Handler).serve_forever()
+    ThreadingHTTPServer((__import__('os').environ.get('BAINP_FRONTEND_HOST','127.0.0.1'),args.port),Handler).serve_forever()
