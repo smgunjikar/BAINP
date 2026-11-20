@@ -191,7 +191,7 @@ def make_router(store,authenticated,analytics,checkin,gate):
    required=json.loads(prior['manifest']).get('_meta',{}).get('order',[])
    finished={a['task'] for a in c.execute("SELECT task FROM nc_attempts WHERE session_id=? AND status='completed'",(prior['id'],))}
    if {'C01','C02','C03','C04','C05','C06'}.issubset(set(required)&finished):baseline_complete=True
-  battery=data['prefer'] if baseline_complete else 'core' 
+  battery=data['prefer'] if baseline_complete else 'core'
   tasks=['C03','C05','C06'] if battery=='quick' else ['C01','C03','C04','C05','C02','C06']+(['C07','C08','C09','C10'] if battery=='extended' else [])
   return result|dict(reason='First visit uses core; follow-up uses your selected burden preference after current preparation checks.',battery=battery,tasks=tasks,checkin_id=row['id'],executable=True,authority='NeuroCognition research follow-up proposal; native task execution rechecks preparation. NeuroQuest/Continuum remains the existing guided clinical workflow.',duration='Not calibrated; actual duration includes practice and memory delay.')
  @r.get('/{pid}/plan')
