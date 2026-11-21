@@ -1,0 +1,37 @@
+/* Original task visuals; no copyrighted clinical test content. */
+.pattern{width:8rem;height:8rem;max-width:24vw;vertical-align:middle;color:var(--ink,#173b32)}
+.stage{min-height:16rem;display:flex;align-items:center;justify-content:center;gap:2rem;flex-wrap:wrap;border:2px solid currentColor;padding:1rem;background:var(--card,#fff)}
+.stage .pattern{width:10rem;height:10rem}
+.task-controls{display:flex;gap:1rem;flex-wrap:wrap;margin-block:1rem}
+.task-controls button{min-height:3.5rem;min-width:8rem}
+.result-table{width:100%;border-collapse:collapse;font-size:.95rem}
+.result-table td,.result-table th{padding:.6rem;text-align:start;border-bottom:1px solid currentColor}
+.scroll-table{overflow:auto}
+.raw-log{white-space:pre-wrap;overflow-wrap:anywhere;max-height:30rem;overflow:auto}
+.focus-panel{border:3px solid currentColor;padding:1rem}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+
+/* Preserve physical left/right choices even in an Arabic RTL page. */
+.stage,.task-controls{direction:ltr}
+/* Spatial positions remain physical row-major positions under RTL. */
+.spatial-grid{display:grid;grid-template-columns:repeat(3,3.5rem);gap:.4rem;direction:ltr;margin:1rem auto;width:max-content}
+.spatial-cell{display:flex;align-items:center;justify-content:center;width:3.5rem;height:3.5rem;border:2px solid currentColor;background:var(--card);color:var(--ink);font-weight:700}
+.spatial-cell.lit{background:var(--ink);color:var(--bg);outline:3px solid currentColor;font-weight:950}
+.spatial-options{display:flex;gap:2rem;justify-content:space-around;direction:ltr;flex-wrap:wrap}
+.timeline{width:100%;max-height:20rem;border:1px solid var(--line)}
+
+/* Readable observation reports keep numbers aligned and input text unaltered. */
+.record-facts{display:grid;grid-template-columns:minmax(8rem,1fr) minmax(8rem,2fr);gap:.15rem .8rem;margin-block:.5rem}
+.record-facts dt,.record-facts dd{margin:0;overflow-wrap:anywhere}
+.answer-detail{padding:1rem;border:1px solid var(--line);border-radius:.6rem;margin-block:1rem}
+.answer-detail>summary{font-weight:750;cursor:pointer}
+.answer-review{padding:1rem;border:1px solid var(--line);margin-block:.7rem}
+.trial-thumb{display:inline-flex;gap:.3rem;align-items:center}
+.trial-thumb .pattern{width:3rem;height:3rem;max-width:none}
+.result-table td{vertical-align:top;overflow-wrap:anywhere}
+.result-table input,.result-table select{min-width:8rem}
+
+.stimulus-target,.choice-card{background:var(--card);color:var(--ink);border:2px solid var(--line)}
+.stimulus-target{width:100%;cursor:pointer}
+.choice-card{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:7rem;gap:.4rem}
+.choice-card:focus-visible,.stimulus-target:focus-visible{outline:4px solid #b87900;outline-offset:4px}

@@ -1,0 +1,30 @@
+[
+  {
+    "id": "74bc25177dc0eba25217744b",
+    "synthetic": true,
+    "package_sha256": "842f2d22aede13c6e933e592ca445c89a52f770cfdcba618bac7f838dddfa508",
+    "cohort": "SYNTHETIC-DEMO",
+    "subject": "FICTIONAL-PHANTOM-01",
+    "visit": "demo-baseline",
+    "date": "2025-01-01",
+    "protocol": "generated-ellipsoid-v1",
+    "pipeline": "pure-python-demo-v1",
+    "review": "SYNTHETIC_ONLY",
+    "modality": "SYNTHETIC",
+    "acquisition": "demo-baseline"
+  },
+  {
+    "id": "980090fa6b41813b0139f744",
+    "synthetic": true,
+    "package_sha256": "4dcac60dd64876a2da33ecee9564db28789e423c50cd8473965b4e05c1d9c287",
+    "cohort": "SYNTHETIC-DEMO",
+    "subject": "FICTIONAL-PHANTOM-01",
+    "visit": "demo-followup",
+    "date": "2026-01-01",
+    "protocol": "generated-ellipsoid-v1",
+    "pipeline": "pure-python-demo-v1",
+    "review": "SYNTHETIC_ONLY",
+    "modality": "SYNTHETIC",
+    "acquisition": "demo-followup"
+  }
+]

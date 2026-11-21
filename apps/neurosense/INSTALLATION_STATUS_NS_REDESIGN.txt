@@ -1,0 +1,6 @@
+NEUROSENSE REDESIGN INSTALLED
+Backup: C:\Users\DELL\OneDrive\Desktop\BAINP\apps\neurosense\.ui-backups\ns-redesign-v1-20261120T112246Z
+Changed files:
+C:\Users\DELL\OneDrive\Desktop\BAINP\apps\neurosense\frontend\dashboard.html
+C:\Users\DELL\OneDrive\Desktop\BAINP\apps\neurosense\frontend\dashboard.css
+C:\Users\DELL\OneDrive\Desktop\BAINP\apps\neurosense\frontend\dashboard.js

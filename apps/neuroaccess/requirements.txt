@@ -1,0 +1,4 @@
+# Reuse the bainp environment. These are compatibility bounds, not a locked deployment.
+fastapi>=0.115,<1
+uvicorn>=0.30,<1
+pydantic>=2.7,<3

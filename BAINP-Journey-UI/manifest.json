@@ -1,0 +1,26 @@
+{
+  "apps/neuroaccess/web/app.js": {
+    "before": [
+      "788b92960b739a6092b2b312fa204251a14bbcff20e15c91e92241d979c1ddc0"
+    ],
+    "after": "da8a46aacf70532a59affcf80216374b7211f72e678f474c60cb840638a49467"
+  },
+  "apps/neuroaccess/web/shared-navigation.js": {
+    "before": [
+      "0ee3880dc45fcc5a96437569e4d9345944a87321d63e1e208d6236cdc39f4aee"
+    ],
+    "after": "aae8f4887ef2843e007e18afe9213e19fd31805b5756325d023c8695dfc2baa7"
+  },
+  "apps/neuroaccess/web/shared-workspace.css": {
+    "before": [
+      "df334471e6c5d649aab1d15ff987d281652fa6d9389ece775b484ee110556b25"
+    ],
+    "after": "63a458f854aa16f71645042629c532e97715c54f4b8bc69309876023fb96bd1e"
+  },
+  "apps/neurocontinuum/frontend/app.js": {
+    "before": [
+      "80809d529f7da4782017b07467029b3cfebc69e8d6cc90c7838f1f2ff6ff75f5"
+    ],
+    "after": "69cf1b5feeae71720e57e4808fa27f7171af94c1778536e58c3f43e2e2804129"
+  }
+}

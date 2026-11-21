@@ -1,0 +1,14 @@
+{
+  "apps/neuroaccess/backend/accounts.py": {
+    "before": [
+      "683e8db624ca722893e748908a44304817af681e95e81555efa0fd694612abe2"
+    ],
+    "after": "e3613623dd0b5b6afc72ad228535c4d856651bb8579b54d82e5f43812b8fd144"
+  },
+  "apps/neuroaccess/web/account-ui.js": {
+    "before": [
+      "24e12d6c72f222df979264ea91bfc50dbc4602a47138e153265cf8c06fdccf0a"
+    ],
+    "after": "57b2f6c70aa20f7f436a90f15197bf583df177896ea5d74b266c08b9b1804989"
+  }
+}

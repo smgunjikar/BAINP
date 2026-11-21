@@ -1,0 +1,26 @@
+{
+  "schema": "arena-binary-v1",
+  "dataset": "fictional-demo",
+  "dataset_version": "1",
+  "usage_reference": "synthetic-engineering",
+  "outcome": "fictional-event",
+  "horizon_days": 365,
+  "evaluation_split": "test",
+  "models": [
+    {
+      "id": "baseline",
+      "threshold": 0.5,
+      "artifact_sha256": "20803217408b0442ff8462da892f79ec6cb3ff377679cca829a40f77edb27764"
+    },
+    {
+      "id": "candidate",
+      "threshold": 0.5,
+      "artifact_sha256": "523f45d83d4280975b8870e9af69c78846b360d83fe096b62495288d9488f6a8"
+    }
+  ],
+  "file_sha256": {
+    "split.csv": "0d4325f0349bed7cfe78159abf7ebca546a4b7daabbe587b72c62daf0023c8af",
+    "fit.csv": "1eeecfe410007bc0623bde9a3e8563de57eaa241cccbb14db37af73a966f9d7a",
+    "predictions.csv": "e3fc0313354a7e2eae63739abf653aaa952c29dc466dd79160f974c9ab5b5273"
+  }
+}

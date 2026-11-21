@@ -1,0 +1,57 @@
+{
+  "participants": 104,
+  "ridge": {
+    "MAE": 1.4426098773236105,
+    "RMSE": 2.036119377557897
+  },
+  "persistence": {
+    "MAE": 1.3846153846153846,
+    "RMSE": 2.1750331562459526
+  },
+  "bootstrap_95_percentile_intervals": {
+    "ridge_MAE": [
+      1.1816542166302395,
+      1.7289853092764431
+    ],
+    "ridge_RMSE": [
+      1.6317442568308074,
+      2.4436469342893274
+    ],
+    "persistence_MAE": [
+      1.086298076923077,
+      1.7307692307692308
+    ],
+    "persistence_RMSE": [
+      1.6554107089736418,
+      2.7139684824177195
+    ],
+    "ridge_minus_persistence_MAE": [
+      -0.11951943073462064,
+      0.22838777781140132
+    ],
+    "ridge_minus_persistence_RMSE": [
+      -0.3662668213218567,
+      0.11618626580808805
+    ]
+  },
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "sklearn": "1.8.0"
+  },
+  "analysis_plan_sha256": "29280a57485bdef90f6583510ba5ae2fdc2134ac278e21166210f832d277b521",
+  "script_sha256": "5b3e8bdea533a3b8000f41c7b2bb5e90872bef9f4e385105891ddc218e8e6813",
+  "uncertainty_note": "Conditional bootstrap of fixed paired out-of-fold predictions; does not include full model refitting or fold variability.",
+  "limitations": [
+    "Exploratory internal validation only.",
+    "Selected visits within 18–30 months, not exact two-year prognosis.",
+    "Clinical-only; MRI QC unresolved.",
+    "No deployment model fitted."
+  ],
+  "dataset": "OASIS-2 clinical-only frozen cohort",
+  "outcome": "Follow-up MMSE in the frozen 18–30 month visit window",
+  "evaluation": "Five outer participant folds with inner model selection. Earlier MMSE is the persistence baseline.",
+  "release_authorized": false,
+  "status": "measured_exploratory_internal_validation"
+}

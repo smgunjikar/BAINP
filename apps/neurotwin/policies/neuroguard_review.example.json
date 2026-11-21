@@ -1,0 +1,9 @@
+{
+  "approved": false,
+  "reviewer": "",
+  "review_reference": "",
+  "expires_on": "2027-01-01",
+  "model_sha256": "",
+  "calibration_reviewed": false,
+  "approved_cohorts": []
+}

@@ -1,0 +1,1 @@
+C01 API/rule verification passed at 2026-11-04T14:17:07.0416256+05:30. Manual browser task verification remains separate.

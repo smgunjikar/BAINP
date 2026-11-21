@@ -1,0 +1,21 @@
+
+services:
+  - type: web
+    name: bainp-research-preview
+    runtime: python
+    plan: starter
+    branch: release/bainp-3.0-production
+    buildCommand: pip install -r apps/neuroaccess/requirements.txt
+    startCommand: python deploy/render_start.py
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.11
+      - key: BAINP_FRONTEND_HOST
+        value: 0.0.0.0
+      - key: NEUROACCESS_DATA_DIR
+        value: /var/data/neuroaccess
+    disk:
+      name: bainp-demo-data
+      mountPath: /var/data
+      sizeGB: 1

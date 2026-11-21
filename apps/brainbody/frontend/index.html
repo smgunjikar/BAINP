@@ -1,0 +1,160 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BBC-BE · BAINP</title><link rel="stylesheet" href="/brainbody.css"><script src="/brainbody.js" defer></script><style id="bainp-bbc-redesign-v1">
+/* BAINP BBC-BE UI REDESIGN V1 - visual-only, preserves original source evidence */
+:root {--bb-ivory:#f8f5ef;--bb-ink:#152720;--bb-green:#0c6245;--bb-deep:#0a382c;--bb-line:#dce9e1;--bb-muted:#526b61;--bb-soft:#e9f7ed;--bb-shadow:0 12px 38px rgba(10,57,42,.075)}
+html,body{margin:0;min-height:100%;background:var(--bb-ivory);color:var(--bb-ink);font-family:Inter,"Segoe UI",system-ui,sans-serif}
+body{font-size:14px;line-height:1.5}
+.bb-app-shell{min-height:100vh;display:grid;grid-template-columns:244px minmax(0,1fr)}
+.bb-sidebar{position:sticky;top:0;height:100vh;overflow-y:auto;box-sizing:border-box;background:radial-gradient(ellipse 200px 300px at 85% 30%,rgba(108,231,172,.23),transparent 82%),radial-gradient(ellipse 200px 360px at 10% 78%,rgba(63,163,119,.3),transparent 85%),linear-gradient(160deg,#07382a 0%,#0c4836 42%,#096348 76%,#082d25 100%);color:#f4fff8;display:flex;flex-direction:column;padding:26px 14px;z-index:3}
+.bb-brand{display:flex;align-items:center;gap:11px;padding:2px 9px 26px;border-bottom:1px solid rgba(238,255,245,.16)}
+.bb-brand-icon{width:39px;height:39px;border:2px solid #6ee39d;border-radius:12px;display:grid;place-items:center;font-size:24px;color:#7df3a4;font-weight:700}
+.bb-brand-title{font-size:20px;line-height:1.1;font-weight:850;letter-spacing:-.03em}
+.bb-brand-sub{font-size:9px;line-height:1.45;color:#d3ebdc}
+.bb-side-nav{display:flex;flex-direction:column;gap:3px;padding-top:20px;flex:1}
+.bb-sidebar .bb-side-nav a,.bb-sidebar .bb-side-footer a{display:flex;align-items:center;gap:11px;color:#f8fff9;font-size:13px;text-decoration:none;font-weight:650;padding:11px 12px;border-radius:13px;min-height:44px;box-sizing:border-box}
+.bb-sidebar .bb-side-nav a:hover,.bb-sidebar .bb-side-footer a:hover{background:rgba(242,255,246,.13)}
+.bb-sidebar .bb-side-nav a[aria-current=page]{background:#e5f4e9;color:#073d2a;box-shadow:0 5px 17px rgba(0,0,0,.13)}
+.bb-nav-icon{width:20px;text-align:center;flex:none;font-size:17px;line-height:1}
+.bb-side-footer{border-top:1px solid rgba(238,255,245,.18);padding-top:14px;margin-top:30px}
+.bb-layout-content{min-width:0}
+.bb-layout-content main{max-width:none;width:auto;margin:0 auto;padding:22px clamp(16px,2.3vw,38px) 40px}
+.bb-layout-content main>header{background:rgba(255,255,255,.86);border:1px solid #e3eae5;border-radius:17px;padding:13px 18px;margin-bottom:15px;box-shadow:var(--bb-shadow);gap:12px}
+.bb-layout-content header>a{font-weight:850;color:var(--bb-deep);font-size:18px}
+.bb-layout-content header span{color:var(--bb-muted);font-size:13px}
+.bb-layout-content .hero{margin-top:0;position:relative;overflow:hidden;border-radius:22px;border:1px solid #c6e9d5;background:radial-gradient(ellipse 40% 110% at 86% 45%,rgba(0,164,122,.56),transparent 90%),radial-gradient(circle at 73% 65%,rgba(182,255,220,.53),transparent 38%),linear-gradient(109deg,#f8fefb 0%,#e7f9ee 48%,#96d8bc 100%);padding:40px 38px;min-height:205px;box-shadow:var(--bb-shadow)}
+.bb-layout-content .hero:after{content:"";position:absolute;right:21%;top:28%;width:195px;height:195px;border:2px solid rgba(255,255,255,.53);border-radius:50%;box-shadow:0 0 0 20px rgba(255,255,255,.08),0 0 0 46px rgba(255,255,255,.06);pointer-events:none}
+.bb-layout-content .hero>div{position:relative;z-index:1}
+.bb-layout-content .hero h1{font-size:clamp(32px,3vw,48px);line-height:1.04;letter-spacing:-.055em;margin:0 0 14px;color:#10241c;max-width:650px}
+.bb-layout-content .hero h1 em{font-weight:750;color:#006945}
+.bb-layout-content .hero p{max-width:700px;color:#375e4d}
+.bb-layout-content .hero .eyebrow{color:#068047;font-size:12px;letter-spacing:.1em}
+.bb-layout-content .hero a{display:inline-block;background:#fff;color:#075a3e;padding:10px 16px;border-radius:11px;font-weight:750;text-decoration:none;border:1px solid rgba(4,93,58,.15)}
+.bb-layout-content .hero label{font-weight:750;color:#194b37}
+.bb-layout-content select,.bb-layout-content input:not([type=checkbox]),.bb-layout-content textarea{border-radius:11px;border:1px solid #cdded2;color:var(--bb-ink);background:#fff;padding:10px 12px}
+.bb-layout-content .identity{background:#fff;border:1px solid var(--bb-line);border-radius:15px;margin:15px 0 8px;padding:16px 20px;box-shadow:var(--bb-shadow)}
+.bb-layout-content .identity b{font-size:18px;color:#0a422c}
+.bb-layout-content .badge{background:#e4f4e9;color:#115a39}
+.bb-layout-content .notice{border-left:4px solid #d29a3c;background:#fff9ea;color:#79572a;border-radius:9px}
+.bb-layout-content section{border-radius:19px;border:1px solid var(--bb-line);box-shadow:var(--bb-shadow);padding:21px;background:#fff}
+.bb-layout-content section h2{font-size:20px;font-weight:780;letter-spacing:-.035em;color:#153b2c}
+.bb-layout-content .eyebrow{color:#16794d}
+.bb-layout-content p{color:#526b61}
+.bb-layout-content .caption{font-size:12px;color:#607b70}
+.bb-layout-content main>nav[aria-label="Brain–body workspaces"]{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:7px;border:1px solid var(--bb-line);background:#fff;border-radius:15px;padding:7px;margin:18px 0;box-shadow:var(--bb-shadow)}
+.bb-layout-content nav[aria-label="Brain–body workspaces"] button{white-space:normal;text-align:center;line-height:1.25;padding:13px 6px;background:transparent;border:0;color:#275442;border-radius:11px;box-shadow:none;min-height:48px;font-weight:700;font-size:12px}
+.bb-layout-content nav[aria-label="Brain–body workspaces"] button[aria-pressed=true]{background:linear-gradient(145deg,#0bb65a,#075e3d);color:#fff;box-shadow:0 6px 17px rgba(4,114,61,.15)}
+.bb-layout-content button{background:#0b6945;border:1px solid #0b6945;border-radius:11px;color:#fff;font-weight:760;box-shadow:none;padding:11px 15px}
+.bb-layout-content button:hover:not(:disabled){background:#075538}
+.bb-layout-content button.secondary{background:#fff;color:#0b6945;border-color:#bcd9c8}
+.bb-layout-content button.secondary:hover:not(:disabled){background:#eaf6ee}
+.bb-layout-content .connections{margin-top:18px}
+.bb-layout-content .sourceCards{grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.bb-layout-content .sourceCard{border:1px solid #daebe0;border-radius:15px;background:linear-gradient(155deg,#fff 50%,#f2fcf5);padding:18px;box-shadow:0 5px 18px rgba(10,55,38,.045)}
+.bb-layout-content .sourceCard h3{color:#123b2a;font-size:15px}
+.bb-layout-content .sourceCard strong{color:#087744;font-weight:760;font-size:13px}
+.bb-layout-content .sourceCard a{font-weight:740;color:#077449}
+.bb-layout-content .systems{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.bb-layout-content .system{background:#eff9f2;border:1px solid #cde7d7;border-radius:15px;padding:17px}
+.bb-layout-content .system strong{color:#066a45;font-weight:750}
+.bb-layout-content .metric{background:#f7fbf7;border:1px solid #d8e9dd;border-radius:13px;padding:17px}
+.bb-layout-content .metric strong{color:#0b6545;font-weight:750;font-size:21px}
+.bb-layout-content .qualityRow{border-color:#e3eee5;gap:12px}
+.bb-layout-content .qualityRow b{color:#0a6841;text-align:right}
+.bb-layout-content .twoCol{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}
+.bb-layout-content #overview>section,.bb-layout-content .twoCol section{min-width:0}
+.bb-layout-content svg{background:#f8fcf9;border:1px solid #edf3ee;border-radius:12px}
+.bb-layout-content table{font-size:12px}
+.bb-layout-content th{background:#f4faf6;color:#1d5c3e;font-weight:780}
+.bb-layout-content td{border-bottom-color:#e4eee7}
+.bb-layout-content .finding,.bb-layout-content .evidenceCard{background:#f9fcf8;border-color:#dceade;border-radius:13px}
+.bb-layout-content .scope{border-radius:12px;border-color:#dce8dc;background:#fbfdfb}
+.bb-layout-content footer{color:#637c6f}
+.bb-layout-content :focus-visible{outline:3px solid #d48d34;outline-offset:3px}
+@media(max-width:1220px){.bb-app-shell{grid-template-columns:210px minmax(0,1fr)}.bb-layout-content .sourceCards{grid-template-columns:repeat(2,minmax(0,1fr))}.bb-layout-content main>nav[aria-label="Brain–body workspaces"]{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:930px){.bb-app-shell{display:block}.bb-sidebar{position:relative;width:100%;height:auto;max-height:none;padding:12px 14px}.bb-brand{padding:8px}.bb-side-nav{flex-direction:row;overflow-x:auto;padding:10px 0;gap:6px}.bb-sidebar .bb-side-nav a{min-width:max-content;padding:10px 12px}.bb-side-footer{display:none}.bb-layout-content .hero{padding:28px 24px}.bb-layout-content .twoCol{grid-template-columns:1fr}}
+@media(max-width:570px){.bb-layout-content .sourceCards,.bb-layout-content .systems{grid-template-columns:1fr}.bb-layout-content main>nav[aria-label="Brain–body workspaces"]{grid-template-columns:repeat(2,minmax(0,1fr))}.bb-layout-content .hero{min-height:0}.bb-layout-content .hero:after{display:none}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+
+</style></head><body><!-- BAINP_BBC_REDESIGN_V1_START -->
+<div class="bb-app-shell">
+<aside class="bb-sidebar" aria-label="BAINP modules">
+<div class="bb-brand"><div class="bb-brand-icon" aria-hidden="true">✳</div><div><div class="bb-brand-title">BAINP 3.0</div><div class="bb-brand-sub">Brain Health Intelligence Platform</div></div></div>
+<div class="bb-side-nav"><a href="/" data-bb-path="/"><span class="bb-nav-icon" aria-hidden="true">⌂</span><span>Overview</span></a>
+<a href="/neurocontinuum" data-bb-path="/neurocontinuum"><span class="bb-nav-icon" aria-hidden="true">◈</span><span>NeuroContinuum</span></a>
+<a href="/neuroquest" data-bb-path="/neuroquest"><span class="bb-nav-icon" aria-hidden="true">◎</span><span>NeuroQuest</span></a>
+<a href="/cognition" data-bb-path="/cognition"><span class="bb-nav-icon" aria-hidden="true">♧</span><span>NeuroCognition X</span></a>
+<a href="/neurovision" data-bb-path="/neurovision"><span class="bb-nav-icon" aria-hidden="true">◉</span><span>NeuroVision</span></a>
+<a href="/neuropulse" data-bb-path="/neuropulse"><span class="bb-nav-icon" aria-hidden="true">⌁</span><span>NeuroPulse</span></a>
+<a href="/neurosense" data-bb-path="/neurosense"><span class="bb-nav-icon" aria-hidden="true">◉</span><span>NeuroSense</span></a>
+<a href="/neurotwin" data-bb-path="/neurotwin"><span class="bb-nav-icon" aria-hidden="true">♧</span><span>NeuroTwin X</span></a>
+<a href="/brain-body" data-bb-path="/brain-body" aria-current="page"><span class="bb-nav-icon" aria-hidden="true">◇</span><span>Brain–Body Context</span></a>
+<a href="/neuroguard" data-bb-path="/neuroguard"><span class="bb-nav-icon" aria-hidden="true">⬡</span><span>NeuroGuard</span></a>
+<a href="/neurograph" data-bb-path="/neurograph"><span class="bb-nav-icon" aria-hidden="true">◈</span><span>NeuroGraph</span></a>
+<a href="/careloop" data-bb-path="/careloop"><span class="bb-nav-icon" aria-hidden="true">◇</span><span>CareLoop</span></a></div>
+<div class="bb-side-footer"><a href="/">BAINP Home</a></div></aside><div class="bb-layout-content">
+<main>
+<header><a id="home" href="/">BAINP <span>/ Brain–Body Context</span></a><div class="actions"><span id="mode" class="badge"></span><button id="refresh" class="secondary">Refresh sources</button><button id="export" class="secondary">Export evidence</button><button id="report" class="secondary">Export review report</button></div></header>
+<div class="hero"><div><p class="eyebrow">BRAIN–BODY CONTEXT & BIOMARKER ENGINE</p><h1>Whole-person context.<br><em>Traceable evidence.</em></h1><p>Connect health observations with cognition while preserving source, assay and time.</p></div><div><label id="profileLabel">Workspace<select id="profile"><option value="selected">Selected participant records</option><option value="control">Synthetic control scenario</option><option value="impairment">Synthetic impairment scenario</option></select></label><a id="twinLink" href="/neurotwin">Open NeuroTwin X ↗</a></div></div>
+<section class="identity"><div><b id="name">Loading workspace</b><p id="identity"></p></div><div><span id="checked"></span><p id="status" role="status" aria-live="polite"></p></div></section><p id="boundary" class="notice">Research context. Temporal co-occurrence is not causation or a neurological diagnosis.</p>
+<section id="chooseParticipant" hidden>
+  <h2>Select a BAINP participant</h2>
+  <p>Choose the participant in BAINP and open their Brain–Body Context &amp; Biomarkers card.</p>
+  <div class="actions"><a id="chooseParticipantLink" href="/?mode=active">Open BAINP</a><a href="/brain-body?mode=demo&amp;profile=impairment&amp;view=timeline">Open the fictional demo</a></div>
+</section>
+<div id="snapshotWorkspace" hidden>
+<section id="contextNext" class="nextStep" hidden>
+  <div><h2>Start with authorized context</h2><p id="contextNextText"></p></div>
+  <button id="contextNextAction">Manage authorization</button>
+</section>
+<section class="connections" aria-labelledby="connectionsHeading">
+  <p class="eyebrow">BAINP WORKSPACES</p>
+  <h2 id="connectionsHeading">Connected sources and evidence</h2>
+  <p class="caption">Counts are scoped to this workspace and participant. Source-specific records open in their own module.</p>
+  <div id="sourceCards" class="sourceCards"></div>
+</section>
+<div id="systems" class="systems"></div>
+<nav aria-label="Brain–body workspaces"><button data-tab="overview" aria-pressed="true">Context overview</button><button data-tab="timeline" aria-pressed="false">Time & cognition</button><button data-tab="entry" aria-pressed="false">Record observations</button><button data-tab="biomarkers" aria-pressed="false">Assays & molecular research</button><button data-tab="review" aria-pressed="false">Review & evidence</button><button data-tab="privacy" aria-pressed="false">Consent & privacy</button></nav>
+<section id="sessionWorkspace" hidden>
+  <div class="heading">
+    <div><p class="eyebrow">COGNITIVE SESSION REVIEW</p><h2>Context for a cognitive session</h2></div>
+    <label>Session<select id="sessionSelect"></select></label>
+  </div>
+  <div class="actions">
+    <a id="cognitiveSource" hidden>Open cognitive results ↗</a>
+    <button data-go="privacy" class="secondary">Manage authorization</button>
+    <button data-go="entry" class="secondary">Record context</button>
+  </div>
+  <div id="sessionReview" aria-live="polite"></div>
+</section>
+
+<div id="overview" class="panel"><p><a id="neuroEvidenceLink" href="/neurograph?mode=demo">Open NeuroGraph &amp; NeuroGuard</a></p><div class="twoCol"><section><div class="heading"><div><p class="eyebrow">CURRENT SOURCE RECORDS</p><h2>Health-context observations</h2></div><button data-go="entry">Add observation</button></div><div id="metrics" class="metricGrid"></div><p class="caption">Latest record in each exact source/assay/unit/context group. No combined health-risk score.</p></section><section><p class="eyebrow">EVIDENCE ADEQUACY</p><h2>Quality, availability & review</h2><div id="quality"></div><div id="reports"></div></section></div><section><h2>Context history</h2><div class="heading"><label>Measurement and source group<select id="metric"></select></label><span id="metricContext" class="caption"></span></div><svg id="contextChart" viewBox="0 0 1100 290" role="img" aria-label="Longitudinal health-context observations"></svg><p id="trend" class="caption"></p><div class="scroll"><table><thead><tr><th>Observation</th><th>Reported result</th><th>Source / assay</th><th>Observed · available · received</th><th>Report interval / quality</th><th>Actions</th></tr></thead><tbody id="recordTable"></tbody></table></div></section></div>
+<div id="timeline" class="panel" hidden><section><div class="heading"><div><p class="eyebrow">TEMPORAL LINKAGE</p><h2>Health context alongside cognition</h2></div><label>Cognitive task / condition<select id="cognitiveMetric"></select></label></div><p>The panels preserve their own measurement units. Shared date positions do not establish that one variable caused another.</p><svg id="alignedContext" viewBox="0 0 1100 240" role="img" aria-label="Context measurements on a shared date axis"></svg><svg id="cognitiveChart" viewBox="0 0 1100 240" role="img" aria-label="Cognitive observations on the same date axis"></svg><p id="alignmentNote" class="caption"></p><div id="alignments"></div></section><section><h2>Historical evidence cutoff</h2><p>This replay uses results both source-available and received by BAINP at the cutoff. Current consent still applies. It cannot reveal subsequently entered records.</p><label>Cutoff in your browser's local time<input type="datetime-local" id="asOf"></label><div class="actions"><button id="applyCutoff">Apply cutoff</button><button id="clearCutoff" class="secondary">Return to current evidence</button></div><p id="cutoffNote" role="status"></p></section></div>
+<div id="entry" class="panel" hidden><section><div class="heading"><div><p class="eyebrow">OBSERVED STATE</p><h2>Record verified context</h2></div><button data-go="privacy" class="secondary">Manage authorization</button></div><p id="entryMode" class="notice"></p><form id="recordForm"><div class="formGrid"><label>Record type<select id="kind"><option value="measurement">Numeric measurement / assay result</option><option value="condition">Reported medical condition</option><option value="medication">Medication/context change</option><option value="sleep_report">Sleep report</option><option value="lifestyle_report">Lifestyle report</option><option value="wellbeing_report">Wellbeing report</option><option value="family_history">Family-history context</option><option value="professional_genomic_finding">Professional genomic summary</option></select></label><label id="metricLabel">Measurement<select id="entryMetric"></select></label><label>Observed / specimen collected<input id="observedAt" type="datetime-local" required></label><label>Result / report available<input id="availableAt" type="datetime-local" required></label></div>
+<fieldset id="numericFields"><legend>Reported value</legend><div class="formGrid"><label>Result qualifier<select id="qualifier"><option value="exact">Exact reported value</option><option value="less_than">Less than reported bound</option><option value="greater_than">Greater than reported bound</option><option value="not_detected">Not detected (no point value)</option><option value="not_reported">Not reported (no point value)</option></select></label><label>Value / bound<input id="value" type="number" step="any" min="0"></label><label>Reported unit<select id="unit"></select></label><label>Comparable measurement protocol / context key (optional)<input id="comparisonContext" maxlength="160"></label><label>Absent-result explanation<input id="absentReason" maxlength="250"></label></div></fieldset>
+<fieldset><legend>Source and quality</legend><div class="formGrid"><label>Source type<select id="sourceKind"></select></label><label>Source organization / reported source<input id="organization" maxlength="120" required></label><label>Source record reference<input id="sourceReference" maxlength="160" required></label><label id="deviceLabel">Device identifier<input id="deviceId" maxlength="100"></label><label>Source quality<select id="sourceQuality"><option value="usable">Usable as reported</option><option value="review">Requires source review</option><option value="invalid">Invalid / retain for provenance</option></select></label><label>Encounter / paired BP identifier (optional)<input id="encounter" maxlength="100"></label></div><label>Measurement or report context<textarea id="context" minlength="5" maxlength="500" required rows="2" placeholder="Posture, fasting status, prior night, measurement method, or other relevant conditions"></textarea></label></fieldset>
+<fieldset id="assayFields" hidden><legend>Assay-specific provenance (required for these measurements)</legend><div class="formGrid"><label>Assay name<input id="assayName" maxlength="160"></label><label>Assay version<input id="assayVersion" maxlength="80"></label><label>Laboratory<input id="laboratory" maxlength="160"></label><label>Specimen<select id="specimen"><option value="whole_blood">Whole blood</option><option value="serum">Serum</option><option value="plasma">Plasma</option><option value="csf">CSF</option><option value="urine">Urine</option><option value="saliva">Saliva</option><option value="interstitial_fluid">Interstitial fluid</option><option value="other">Other</option></select></label><label>Analytical method<input id="assayMethod" maxlength="160"></label><label>Lower quantitation limit (optional)<input id="loqLow" type="number" step="any" min="0"></label><label>Upper quantitation limit (optional)<input id="loqHigh" type="number" step="any" min="0"></label></div></fieldset>
+<fieldset id="instrumentFields" hidden><legend>Externally administered questionnaire</legend><p>Store an authorized total and provenance. This module does not reproduce questionnaire items or verify licensing/clinical validity.</p><div class="formGrid"><label>Instrument name<input id="instrumentName" maxlength="100"></label><label>Version<input id="instrumentVersion" maxlength="100"></label><label>Language<input id="instrumentLanguage" maxlength="50"></label><label>Administered by<input id="instrumentBy" maxlength="100"></label></div><label>Permission / authorized-use basis<textarea id="permissionBasis" minlength="10" maxlength="300" rows="2"></textarea></label></fieldset>
+<fieldset id="referenceFields"><legend>Reference supplied by the source (optional)</legend><label class="check"><input id="hasReference" type="checkbox"> The report supplies an applicable interval or decision limit</label><div id="referenceDetails" hidden><div class="formGrid"><label>Type<select id="referenceKind"><option value="reference_interval">Source reference interval</option><option value="decision_limit">Clinical decision limit (no automatic interpretation)</option></select></label><label>Lower boundary (optional)<input id="referenceLow" type="number" step="any"></label><label>Upper boundary (optional)<input id="referenceHigh" type="number" step="any"></label><label>Applies to this participant?<select id="referenceApplies"><option value="unknown">Not established</option><option value="yes">Confirmed for this participant</option><option value="no">Does not apply</option></select></label></div><label>Reference source<input id="referenceSource" minlength="5" maxlength="250"></label><label>Population / assay applicability context<input id="referencePopulation" minlength="5" maxlength="250"></label></div></fieldset>
+<fieldset id="reportFields" hidden><legend>Reported context</legend><label>Summary<textarea id="summary" maxlength="800" rows="3"></textarea></label><div class="formGrid"><label>Effective start (optional)<input id="effectiveStart" type="datetime-local"></label><label>Effective end (optional)<input id="effectiveEnd" type="datetime-local"></label><label id="relativeLabel">Relative degree<select id="relativeDegree"><option value="first">First degree</option><option value="second">Second degree</option><option value="unknown">Unknown</option></select></label><label id="professionalLabel">Professional interpretation reference<input id="professionalReference" maxlength="250"></label></div><label id="disclosureLabel" class="check"><input id="disclosureAuthorized" type="checkbox"> Disclosure of this professional genomic summary is authorized</label></fieldset>
+<details><summary>Verified research-cohort identity (only when applicable)</summary><p>Do not attach unrelated study participants to one individual.</p><div class="formGrid"><label>Cohort identifier<input id="cohort" maxlength="100"></label><label>Source subject identifier<input id="sourceSubject" maxlength="100"></label></div></details>
+<label class="check"><input id="identityVerified" type="checkbox" required> I verified that this source observation belongs to the selected participant.</label><label class="check"><input id="needsReview" type="checkbox"> Preserve a reported concern / request for qualified review</label><div class="actions"><button type="submit" id="saveRecord">Save verified record</button><button type="button" id="cancelEdit" class="secondary" hidden>Cancel amendment</button></div><p id="saveStatus" role="status"></p></form></section></div>
+<div id="biomarkers" class="panel" hidden><section><p class="eyebrow">BIOLOGICAL PLAUSIBILITY</p><h2>Clinical assays & molecular research</h2><p>Results remain separated by analyte, units, specimen, laboratory, assay version and method. Decision limits are not treated as universal reference intervals.</p><div class="scroll"><table><thead><tr><th>Marker</th><th>Reported value</th><th>Specimen / method</th><th>Assay / laboratory</th><th>Interpretation boundary</th></tr></thead><tbody id="assayTable"></tbody></table></div><p class="notice">Peripheral oxidative-damage markers do not directly measure oxidative injury within neurons. This module contains no wearable-to-brain-oxidative-stress estimator.</p></section><section><h2>Family history and professional genomic context</h2><div id="family"></div><label class="check"><input id="showSensitive" type="checkbox"> Include separately authorized professional genomic summaries in this review</label><div id="genomics"></div><p class="caption">No raw variants, polygenic score, automatic APOE interpretation or disease-onset date is generated.</p></section></div>
+<div id="review" class="panel" hidden><section><p class="eyebrow">AUTHORIZED REVIEW WORKSPACE</p><h2>Source quality and follow-up context</h2><p>Review status records an operator/clinician note. Acknowledging or resolving a finding does not change the source value, assay quality or clinical validity.</p><div id="reviewQueue"></div></section><section><h2>Traceable evidence</h2><div id="evidence"></div><details><summary>Source-to-statement evidence graph</summary><div class="scroll"><table><thead><tr><th>Source record</th><th>Supported statement</th><th>Relationship</th></tr></thead><tbody id="graph"></tbody></table></div></details></section><section><h2>Implementation and evaluation</h2><div class="scroll"><table><thead><tr><th>Phase</th><th>Deliverable</th><th>Status</th></tr></thead><tbody id="roadmap"></tbody></table></div><p>Offline comparison tooling evaluates whether adding verified context improves a specified future cognitive-score prediction against a baseline. No private cohort was evaluated by this installer, and no validated BBC-BE risk model is deployed.</p></section></div>
+<div id="privacy" class="panel" hidden><section><p class="eyebrow">CONSENT-AWARE PROCESSING</p><h2>Authorize only the relevant scopes</h2><p>Base participant consent is not automatically treated as genomic, family-history or molecular-research authorization. Withdrawal stops processing/display in this module; stored records remain until explicitly deleted.</p><form id="consentForm"><div id="consentScopes" class="scopeGrid"></div><label>Authorization / withdrawal reference<textarea id="authorizationReference" minlength="10" maxlength="300" rows="2" required></textarea></label><button id="saveConsent" type="submit">Save authorization scopes</button><p id="consentStatus" role="status"></p></form><div id="consentInfo"></div><p class="notice">This prototype uses the existing local operator login. Separate consent and explicit disclosure are implemented; production clinician roles, encryption/key management and institutional genomic access control require deployment engineering.</p></section><section><h2>Evidence boundaries</h2><ul id="boundaries"></ul><p id="snapshotHash" class="caption"></p></section></div>
+</div>
+<footer>BBC-BE · Research context · No neurological diagnosis, treatment selection or calculated individual prevention benefit.</footer>
+</main>
+</div></div>
+<script>
+    (() => {
+      const qs = new URLSearchParams(window.location.search);
+      const ctx = new URLSearchParams();
+      for (const name of ['mode', 'person']) {
+        if (qs.has(name)) ctx.set(name, qs.get(name));
+      }
+      for (const a of document.querySelectorAll('.bb-side-nav a[data-bb-path]')) {
+        const path = a.getAttribute('data-bb-path');
+        if (ctx.toString()) a.href = path + '?' + ctx.toString();
+      }
+    })();
+    </script>
+<!-- BAINP_BBC_REDESIGN_V1_END --></body></html>

@@ -1,0 +1,218 @@
+<!doctype html>
+<!-- BAINP_NS_REDESIGN_V1 -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>BAINP NeuroSense</title>
+  <link rel="stylesheet" href="/sense-dashboard.css">
+  <script src="/sense-monitor.js" defer></script>
+</head>
+<body>
+  <div class="ns-shell">
+    <aside class="ns-sidebar">
+      <div class="ns-brand">
+        <div class="ns-brand-mark">BAINP 3.0</div>
+        <div class="ns-brand-sub">Brain Health Intelligence Platform</div>
+      </div>
+      <nav class="ns-side-nav" aria-label="BAINP sections">
+        <a class="ns-nav-link" href="/">Overview</a>
+        <a class="ns-nav-link" href="/neurocontinuum">NeuroContinuum</a>
+        <a class="ns-nav-link" href="/neuroquest">NeuroQuest</a>
+        <a class="ns-nav-link" href="/cognition">NeuroCognition X</a>
+        <a class="ns-nav-link" href="/neurovision">NeuroVision</a>
+        <a class="ns-nav-link" href="/neuropulse">NeuroPulse</a>
+        <a class="ns-nav-link is-active" href="/neurosense">NeuroSense</a>
+        <a class="ns-nav-link" href="/neurotwin">NeuroTwin X</a>
+        <a class="ns-nav-link" href="/neuroguard">NeuroGuard</a>
+        <a class="ns-nav-link" href="/brainbody">Research &amp; Arena</a>
+      </nav>
+      <div class="ns-sidebar-footer">
+        <a class="ns-nav-link ns-nav-link--muted" href="#">Settings</a>
+        <a class="ns-nav-link ns-nav-link--muted" href="#">Help &amp; Support</a>
+      </div>
+    </aside>
+
+    <main class="ns-main">
+      <header class="ns-topbar">
+        <label class="ns-search" aria-label="Search BAINP">
+          <span class="ns-search-icon">⌕</span>
+          <input type="search" placeholder="Search BAINP (assessments, imaging, signals, reports...)" />
+          <span class="ns-search-kbd">⌘K</span>
+        </label>
+        <div class="ns-topbar-actions">
+          <button class="ns-icon-button" type="button" aria-label="Notifications">🔔</button>
+          <div class="ns-avatar">SG</div>
+        </div>
+      </header>
+
+      <section class="ns-hero">
+        <div class="ns-hero-copy">
+          <div class="ns-kicker">NEUROSENSE</div>
+          <h1>Multimodal Sensing &amp; Movement Tracking</h1>
+          <p>Wearables, movement, sleep and physiological signals for brain-health insights.</p>
+        </div>
+        <div class="ns-module-pill">
+          <strong>Digital Biomarker Module</strong>
+          <span>Movement · Sleep · Activity · Vital signals</span>
+        </div>
+      </section>
+
+      <nav class="ns-tabs" aria-label="NeuroSense views">
+        <button class="ns-tab is-active" data-tab="live">Live Tracking</button>
+        <button class="ns-tab" data-tab="activity">Activity &amp; Mobility</button>
+        <button class="ns-tab" data-tab="sleep">Sleep Analysis</button>
+        <button class="ns-tab" data-tab="physiology">Physiology</button>
+        <button class="ns-tab" data-tab="trends">Trends &amp; Longitudinal</button>
+        <button class="ns-tab" data-tab="reports">Reports</button>
+      </nav>
+
+      <p id="status" class="ns-status" role="status"></p>
+
+      <section class="ns-toolbar">
+        <article class="ns-toolbar-card">
+          <div class="ns-toolbar-icon">⌚</div>
+          <div>
+            <div class="ns-toolbar-label">Device connection</div>
+            <div id="device" class="ns-toolbar-title">No device connected</div>
+            <div id="transport" class="ns-toolbar-meta">Awaiting a supported adapter</div>
+          </div>
+          <span id="connectionBadge" class="ns-chip">Awaiting data</span>
+        </article>
+
+        <article class="ns-toolbar-card ns-toolbar-card--filters">
+          <label>
+            <span class="ns-toolbar-label">Data period</span>
+            <select id="periodSelect">
+              <option value="7">Last 7 days</option>
+              <option value="14">Last 14 days</option>
+              <option value="30" selected>Last 30 days</option>
+            </select>
+          </label>
+          <label>
+            <span class="ns-toolbar-label">Participant</span>
+            <input id="participantField" readonly>
+          </label>
+          <div class="ns-toolbar-actions">
+            <button id="connect" class="ns-secondary-button" type="button">Connection options</button>
+            <button id="refreshNow" class="ns-primary-button" type="button">Sync now</button>
+            <button id="pause" class="ns-secondary-button" type="button" hidden>Pause demo stream</button>
+          </div>
+        </article>
+      </section>
+
+      <section id="options" class="ns-disclosure" hidden>
+        <h2>Connections</h2>
+        <p>Apple Health / watchOS, Android health sources and ring cloud adapters require native permissions or vendor authorization. These adapters are not installed in this build.</p>
+        <p>Existing stored observations appear automatically below. Device identity inside a record does not prove a current live connection.</p>
+        <a href="/neurosense">Open NeuroSense research results and recording explorer</a>
+      </section>
+
+      <section class="ns-metric-grid" id="metricCards"></section>
+
+      <section class="ns-content-grid">
+        <article class="ns-card ns-card--wide" data-panel="activity">
+          <div class="ns-card-header">
+            <div>
+              <h2>Activity &amp; movement</h2>
+              <p class="ns-card-subtitle">Recent participant-level observations across the selected period.</p>
+            </div>
+            <div class="ns-segmented">
+              <button class="is-active" data-series="steps">Steps</button>
+              <button data-series="movement_rms">Movement amplitude</button>
+            </div>
+          </div>
+          <div class="ns-chart-wrap">
+            <canvas id="activityChart" width="920" height="280" aria-label="Activity chart"></canvas>
+          </div>
+          <div id="activityLegend" class="ns-inline-metrics"></div>
+        </article>
+
+        <article class="ns-card" data-panel="sleep">
+          <div class="ns-card-header">
+            <div>
+              <h2>Sleep analysis</h2>
+              <p class="ns-card-subtitle">Research summary from stored sleep-duration observations.</p>
+            </div>
+          </div>
+          <div class="ns-sleep-score">
+            <canvas id="sleepRing" width="180" height="180" aria-label="Sleep duration ring"></canvas>
+            <div class="ns-sleep-summary">
+              <div class="ns-sleep-value" id="sleepValue">—</div>
+              <div class="ns-sleep-label">Latest sleep duration</div>
+              <div class="ns-chip" id="sleepBadge">Awaiting observations</div>
+            </div>
+          </div>
+          <div id="sleepStats" class="ns-stat-list"></div>
+        </article>
+
+        <article class="ns-card" data-panel="insights">
+          <div class="ns-card-header">
+            <div>
+              <h2>NeuroSense insights</h2>
+              <p class="ns-card-subtitle">Evidence summaries only. No diagnosis or medical advice.</p>
+            </div>
+          </div>
+          <div id="insightSummary" class="ns-highlight-box"></div>
+          <ul id="insightList" class="ns-bullet-list"></ul>
+        </article>
+      </section>
+
+      <section class="ns-bottom-grid">
+        <article class="ns-card ns-card--wide" data-panel="physiology">
+          <div class="ns-card-header">
+            <div>
+              <h2>Physiological signals</h2>
+              <p class="ns-card-subtitle">Continuous trends from stored observations in time order.</p>
+            </div>
+          </div>
+          <div class="ns-chart-wrap ns-chart-wrap--tall">
+            <canvas id="physioChart" width="920" height="260" aria-label="Physiological chart"></canvas>
+          </div>
+          <div class="ns-chart-note">Heart rate and movement amplitude are shown when available. Signal availability varies by record source.</div>
+        </article>
+
+        <article class="ns-card" data-panel="metrics">
+          <div class="ns-card-header">
+            <div>
+              <h2>Key research metrics</h2>
+              <p class="ns-card-subtitle">Simple participant-level summaries from currently loaded data.</p>
+            </div>
+          </div>
+          <div id="researchMetrics" class="ns-key-metrics"></div>
+        </article>
+
+        <article class="ns-card" data-panel="biomarkers">
+          <div class="ns-card-header">
+            <div>
+              <h2>Research &amp; digital biomarkers</h2>
+              <p class="ns-card-subtitle">Source-aware exploration categories.</p>
+            </div>
+          </div>
+          <div class="ns-topic-list">
+            <a href="#">Gait &amp; balance <span>Stride, variability, stability</span></a>
+            <a href="#">Activity rhythm <span>Daily pattern and circadian features</span></a>
+            <a href="#">Physiological markers <span>Heart rate, recovery, variability</span></a>
+            <a href="#">Cognitive correlates (research) <span>Movement, sleep and cognition links</span></a>
+          </div>
+        </article>
+      </section>
+
+      <section class="ns-footer-row">
+        <article class="ns-card">
+          <h2>Personal-change timeline</h2>
+          <p class="ns-card-subtitle">Experimental statistical screening. A deviation does not identify a disease or its cause.</p>
+          <div id="events" class="ns-event-list"></div>
+        </article>
+        <article class="ns-card">
+          <h2>Signal availability</h2>
+          <div id="capabilities" class="ns-capability-list"></div>
+        </article>
+      </section>
+
+      <footer class="ns-page-footer">Research prototype · Original PADS models evaluate movement research groups. Cardiovascular and sleep observations have no validated disease model here.</footer>
+    </main>
+  </div>
+  <script src="/brainbody-return.js" defer></script>
+</body>
+</html>

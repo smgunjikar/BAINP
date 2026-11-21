@@ -1,0 +1,195 @@
+"""BAINP NeuroPulse research-only spectral pipeline for OpenNeuro ds004504.
+
+Original EEG is never modified. Independent EEG acquisition cohorts are not linked.
+Band powers are descriptive, not clinical or diagnostic outputs.
+"""
+from __future__ import annotations
+
+import argparse
+import csv
+import hashlib
+import json
+import math
+import os
+from pathlib import Path
+import re
+import sys
+from datetime import datetime, timezone
+from uuid import uuid4
+
+import mne
+import numpy as np
+from scipy.signal import welch
+
+SCHEMA = 'bainp_neuropulse_main_v1'
+BANDS = {'delta': (1., 4.), 'theta': (4., 8.), 'alpha': (8., 13.), 'beta': (13., 30.)}
+SUBJECT = re.compile(r'^sub-\d{3,}$')
+
+
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open('rb') as f:
+        for part in iter(lambda: f.read(1024 * 1024), b''):
+            digest.update(part)
+    return digest.hexdigest()
+
+
+def safe_write_json(path: Path, record: dict) -> None:
+    with path.open('x', encoding='utf-8') as f:
+        json.dump(record, f, indent=2, allow_nan=False)
+        f.write('\n')
+
+
+def features_for_window(samples: np.ndarray, sfreq: float) -> dict:
+    """Mean per-channel band powers in uV²; no normalization/clinical cutoff."""
+    if samples.ndim != 2 or samples.shape[0] == 0 or samples.shape[1] < 4:
+        raise ValueError('Invalid window shape')
+    nperseg = min(samples.shape[1], max(4, round(sfreq * 2)))
+    freqs, spectrum = welch(samples, fs=sfreq, axis=-1, nperseg=nperseg,
+                             noverlap=nperseg // 2, detrend='constant')
+    # Welch PSD is V²/Hz because MNE emits signal in volts.
+    result = {}
+    for name, (low, high) in BANDS.items():
+        select = (freqs >= low) & (freqs < high)
+        if not np.any(select):
+            raise ValueError(f'Insufficient frequency resolution for {name}')
+        # Discrete integration using the frequency-bin width avoids degenerate
+        # single-bin trapezoidal integration at low sample/window lengths.
+        hz_step = float(freqs[1] - freqs[0])
+        powers_uv2 = np.sum(spectrum[:, select], axis=1) * hz_step * 1e12
+        result[name + '_uv2'] = float(np.mean(powers_uv2))
+    return result
+
+
+def process_one(path: Path, *, window_seconds: float, amplitude_uv: float,
+                minimum_windows: int) -> dict:
+    if not path.is_file() or path.stat().st_size <= 0:
+        raise ValueError('Missing or empty recording')
+    source_hash = sha256_file(path)
+    raw = mne.io.read_raw_eeglab(str(path), preload=False, verbose='ERROR')
+    sfreq = float(raw.info['sfreq'])
+    picks = mne.pick_types(raw.info, eeg=True, meg=False, exclude=[])
+    if not len(picks) or not (sfreq > 2 * max(x[1] for x in BANDS.values())):
+        raise ValueError('No EEG channels or inadequate sampling rate')
+    samples_per_window = round(window_seconds * sfreq)
+    if samples_per_window < 4:
+        raise ValueError('Window too short')
+    total_windows = raw.n_times // samples_per_window
+    if total_windows == 0:
+        raise ValueError('Recording shorter than processing window')
+    excluded = []
+    kept_features = []
+    aggregate_psd = []
+    # Process entire recordings in bounded blocks, never preload.
+    for i in range(total_windows):
+        start = i * samples_per_window
+        block = raw.get_data(picks=picks, start=start,
+                             stop=start + samples_per_window)
+        reason = None
+        if not np.isfinite(block).all():
+            reason = 'NONFINITE_SAMPLES'
+        elif float(np.max(np.abs(block))) * 1e6 > amplitude_uv:
+            reason = 'AMPLITUDE_REVIEW_THRESHOLD'
+        elif np.any(np.std(block, axis=1) == 0):
+            reason = 'FLAT_CHANNEL'
+        if reason:
+            excluded.append({'start_s': round(start / sfreq, 3),
+                             'end_s': round((start + samples_per_window) / sfreq, 3),
+                             'reason': reason})
+            continue
+        kept_features.append(features_for_window(block, sfreq))
+    hash_after = sha256_file(path)
+    if source_hash != hash_after:
+        raise RuntimeError('Source file SHA-256 changed during analysis')
+    enough = len(kept_features) >= minimum_windows
+    features = ({name: float(np.mean([d[name] for d in kept_features]))
+                 for name in next(iter(kept_features))} if enough else None)
+    return {
+        'schema': SCHEMA, 'source': str(path), 'sha256': source_hash,
+        'source_unchanged': True, 'sampling_hz': sfreq,
+        'duration_s': float(raw.n_times / sfreq),
+        'eeg_channels': [raw.ch_names[int(p)] for p in picks],
+        'window_seconds': window_seconds, 'amplitude_review_threshold_uv': amplitude_uv,
+        'windows_total': total_windows, 'windows_retained': len(kept_features),
+        'windows_excluded': len(excluded),
+        'excluded_intervals': excluded, 'feature_status': 'DESCRIPTIVE_AVAILABLE' if enough else 'INSUFFICIENT_WINDOWS',
+        'features': features, 'qc_status': 'REVIEW_REQUIRED',
+        'clinical_qc_approved': False, 'research_only': True,
+        'important_limitations': [
+            'Thresholded windows are excluded for research sensitivity analysis only, not scientifically approved artifact correction.',
+            'Window exclusion on any channel may remove usable data; reference, montage and artifacts require expert review.',
+            'Spectral powers are descriptive and are not validated disease biomarkers.'
+        ]
+    }
+
+
+def run(dataset: Path, out_root: Path, limit: int, window_seconds: float,
+        amplitude_uv: float, minimum_windows: int) -> Path:
+    if not dataset.is_dir():
+        raise ValueError(f'Dataset not found: {dataset}')
+    if out_root.resolve() == dataset.resolve() or dataset.resolve() in out_root.resolve().parents:
+        raise ValueError('Output must be outside the raw dataset')
+    files = sorted(dataset.glob('sub-*/eeg/*_task-eyesclosed_eeg.set'))
+    files = [p for p in files if SUBJECT.fullmatch(p.parent.parent.name)]
+    if not files:
+        raise ValueError('No EEGLAB recordings discovered')
+    chosen = files[:limit]
+    out_root.mkdir(parents=True, exist_ok=True)
+    run_dir = out_root / ('main_v1_' + datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ') + '_' + uuid4().hex[:8])
+    run_dir.mkdir(exist_ok=False)
+    results = []
+    for p in chosen:
+        subject = p.parent.parent.name
+        try:
+            record = process_one(p, window_seconds=window_seconds,
+                                 amplitude_uv=amplitude_uv, minimum_windows=minimum_windows)
+            record['subject'] = subject
+            safe_write_json(run_dir / f'{subject}.json', record)
+            row = {'subject': subject, 'status': record['feature_status'],
+                   'windows_total': record['windows_total'],
+                   'windows_retained': record['windows_retained'],
+                   'windows_excluded': record['windows_excluded'],
+                   'sha256': record['sha256'],
+                   'clinical_qc_approved': False}
+            row.update(record['features'] or {name + '_uv2': '' for name in BANDS})
+        except Exception as exc:
+            row = {'subject': subject, 'status': 'FAILED',
+                   'error': f'{type(exc).__name__}: {exc}',
+                   'clinical_qc_approved': False}
+        results.append(row)
+        print(json.dumps({'subject': subject, 'status': row['status'],
+                          'windows_retained': row.get('windows_retained')}, allow_nan=False), flush=True)
+    fields = ['subject','status','windows_total','windows_retained','windows_excluded',
+              'sha256','clinical_qc_approved', *[name + '_uv2' for name in BANDS], 'error']
+    with (run_dir / 'features.csv').open('x', newline='', encoding='utf-8') as f:
+        writer = csv.DictWriter(f, fieldnames=fields)
+        writer.writeheader()
+        writer.writerows(results)
+    summary = {'schema': SCHEMA, 'source_dataset': str(dataset), 'selected': len(chosen),
+               'available': len(files), 'results': results,
+               'research_only': True, 'clinical_qc_approved': False,
+               'patient_identity_linkage': False,
+               'note': 'No disease classification or clinical risk estimation performed.'}
+    safe_write_json(run_dir / 'run_summary.json', summary)
+    print('RUN_DIR:', run_dir)
+    return run_dir
+
+
+def main(argv=None) -> int:
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument('--dataset', required=True, type=Path)
+    ap.add_argument('--output-dir', required=True, type=Path)
+    ap.add_argument('--limit', type=int, default=1)
+    ap.add_argument('--window-sec', type=float, default=10.)
+    ap.add_argument('--amplitude-review-uv', type=float, default=500.)
+    ap.add_argument('--minimum-windows', type=int, default=5)
+    args = ap.parse_args(argv)
+    if args.limit <= 0 or args.window_sec <= 0 or args.amplitude_review_uv <= 0 or args.minimum_windows <= 0:
+        ap.error('All numeric parameters must be positive')
+    out = run(args.dataset, args.output_dir, args.limit, args.window_sec,
+              args.amplitude_review_uv, args.minimum_windows)
+    summary = json.loads((out / 'run_summary.json').read_text(encoding='utf-8'))
+    return 1 if any(r['status'] == 'FAILED' for r in summary['results']) else 0
+
+if __name__ == '__main__':
+    sys.exit(main())

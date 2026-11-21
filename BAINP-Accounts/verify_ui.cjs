@@ -1,0 +1,16 @@
+const fs=require('fs'),assert=require('assert'),{JSDOM}=require('jsdom');
+async function screen(page,role='user'){
+ const dom=new JSDOM('<div id="app"></div>',{url:'http://127.0.0.1:3000/#/'+page,runScripts:'outside-only'}),w=dom.window;
+ const calls=[];w.eval(fs.readFileSync(__dirname+'/payload/apps/neuroaccess/web/account-ui.js','utf8').replace('export function accountScreen','window.accountScreen=function'));
+ function h(tag,attrs={},...children){const el=w.document.createElement(tag);for(const [k,v]of Object.entries(attrs)){if(k.startsWith('on'))el.addEventListener(k.slice(2).toLowerCase(),v);else if(['required','checked','disabled'].includes(k))el[k]=!!v;else el.setAttribute(k,v);}for(const c of children.flat(Infinity)){if(c===false||c==null)continue;el.append(c instanceof w.Node?c:w.document.createTextNode(String(c)));}return el;}
+ const api=async(path,method='GET',body)=>{calls.push({path,method,body});if(path==='/session')return {role,user_id:'u1',workspace:'u1',name:'User',email:'u@example.org'};if(path==='/auth/sessions')return {items:[]};if(path==='/admin/users'||path==='/admin/audit')return {items:[]};return {message:'Saved'};};
+ let logged=false;w.accountScreen(page,{api,h,afterLogin:async()=>{logged=true;}});await new Promise(r=>setTimeout(r,5));return {w,calls,get logged(){return logged}};
+}
+(async()=>{
+ let s=await screen('signin');let fields=s.w.document.querySelectorAll('input');assert.equal(fields[0].type,'email');assert.equal(fields[1].type,'password');fields[0].value='u@example.org';fields[1].value='long testing password';s.w.document.querySelector('form').dispatchEvent(new s.w.Event('submit',{bubbles:true,cancelable:true}));await new Promise(r=>setTimeout(r,5));assert(s.logged);assert.equal(s.calls[0].body.email,'u@example.org');
+ s=await screen('register');assert(s.w.document.body.textContent.includes('administrator approval'));fields=s.w.document.querySelectorAll('input');fields[0].value='User';fields[1].value='u@example.org';fields[2].value='long testing password';fields[3].value='different';s.w.document.querySelector('form').dispatchEvent(new s.w.Event('submit',{bubbles:true,cancelable:true}));await new Promise(r=>setTimeout(r,5));assert.equal(s.calls.length,0);assert(s.w.document.body.textContent.includes('Passwords do not match'));
+ s=await screen('admin');assert(s.w.document.body.textContent.includes('Administrator access is required'));assert(!s.calls.some(x=>x.path==='/admin/users'));
+ s=await screen('admin','admin');assert(s.w.document.body.textContent.includes('Choose workspace'));assert(s.w.document.body.textContent.includes('Recent audit events'));
+ s=await screen('security');assert(s.w.document.body.textContent.includes('Sign out everywhere'));assert(!s.w.document.querySelector('a[href="#/admin"]'));
+ console.log('PASS: email/password sign-in, registration validation, administrator UI boundary, workspace selector, audit view and security screen.');
+})().catch(e=>{console.error(e);process.exit(1)});

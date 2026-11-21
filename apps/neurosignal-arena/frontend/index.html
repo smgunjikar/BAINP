@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>NeuroSignal ARENA &amp; Platform Core · BAINP</title>
+  <link rel="stylesheet" href="/arena-platform.css"><script src="/arena-platform.js" defer></script>
+</head>
+<body>
+<main>
+  <header><a href="/">BAINP workspace</a><nav aria-label="Research and operations">
+    <a href="/arena">NeuroSignal ARENA</a><a href="/platform-core">Platform Core</a>
+  </nav></header>
+  <div class="hero">
+    <p class="eyebrow">BAINP · RESEARCH AND OPERATIONS</p>
+    <h1 id="title">NeuroSignal ARENA</h1>
+    <p id="description"></p>
+    <button type="button" id="refresh">Refresh workspace</button>
+    <p id="status" role="status"></p>
+  </div>
+  <section id="arena" hidden>
+    <p class="eyebrow">MEASURED · EXPLORATORY INTERNAL EVALUATION</p>
+    <h2>OASIS-2 clinical benchmark</h2>
+    <p id="oasisDetails"></p>
+    <div class="table-wrap"><table><thead><tr><th>Model</th><th>MAE</th><th>RMSE</th></tr></thead><tbody id="oasisRows"></tbody></table></div>
+    <p id="oasisInterval"></p>
+    <details><summary>Provenance and limitations</summary><ul id="oasisProvenance"></ul></details>
+    <button type="button" id="exportOasis" disabled>Download aggregate report</button>
+    <h3>Dataset registry</h3><ul id="datasets"></ul>
+  </section>
+  <section id="platform" hidden>
+    <p class="eyebrow">OPERATOR WORKSPACE</p><h2>Service overview</h2>
+    <div class="cards" id="health"></div>
+    <h3>Model registry</h3><p id="model"></p>
+    <h3>Installed modules</h3><ul id="modules" class="modules"></ul>
+    <p class="small">Metrics describe this API process. The module list checks installed source and web routes.</p>
+  </section>
+  <section id="jobs" hidden>
+    <p class="eyebrow">FICTIONAL · LOCKED ENGINEERING PROTOCOL</p><h2>NeuroGuard benchmark queue</h2>
+    <p id="protocol" class="small"></p>
+    <div class="actions">
+      <button type="button" id="run">Run safety suite</button>
+      <button type="button" id="queue">Queue only</button>
+      <button type="button" id="next">Process next queued job</button>
+    </div>
+    <p id="jobStatus" role="status"></p>
+    <label>Saved job <select id="jobSelect"><option value="">Choose a job</option></select></label>
+    <div id="jobDetail" hidden>
+      <p id="jobState"></p>
+      <div class="actions"><button id="runSelected">Run selected</button><button id="cancel">Cancel queued job</button>
+        <button id="exportJob">Download result</button></div>
+      <details><summary>Job history</summary><ol id="jobEvents"></ol></details>
+      <div class="table-wrap"><table id="caseTable" hidden><thead><tr><th>Case</th><th>Expected</th><th>Actual</th><th>Result</th></tr></thead><tbody id="caseRows"></tbody></table></div>
+    </div>
+    <p class="small">These engineering jobs exercise a fixed policy. Qualification and deployment require separate review.</p>
+  </section>
+</main>
+</body>
+</html>

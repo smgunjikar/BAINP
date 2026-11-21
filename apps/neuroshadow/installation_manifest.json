@@ -1,0 +1,11 @@
+{
+  "apps/neuroguard/backend/shadow_policy.py": "eee85f22ec27f3dd6f5063644f0e456e11d1f475df468d6fc6169253cdde863e",
+  "apps/neuroshadow/README.md": "68e8334e6a3f30465f5d9cb3b5979592894328f6ed7812460729505fcf22d22c",
+  "apps/neuroshadow/backend/engine.py": "48893d5f6065145e66566fe52eaa97465b2b290ce1987ba167efa4e0fe5812aa",
+  "apps/neuroshadow/backend/router.py": "51fc6499a6fd755636cd469c046a02e5c2417cd8e8cdb482b179ad599518379e",
+  "apps/neuroshadow/frontend/app.js": "7419d1df489e4e6f6ac3c8eddd090869b50d2c62496c82513bfa14d69f6813ee",
+  "apps/neuroshadow/frontend/collector.js": "dbafb29d0b44561205a126ce3436f2b66412f195aa2084b32e0f7f99feb8ec86",
+  "apps/neuroshadow/frontend/index.html": "19e7acb3c074ea176c17fe44d9b9ac7b4d1e9543a64eb1717a420515ce7901ca",
+  "apps/neuroshadow/frontend/style.css": "406e2aa43d25c327f486f1095debec74561717b79b040ea70d8599f7c0e5b65c",
+  "apps/neuroshadow/tests/verify.py": "7147848d167a62b55164e43345c10a35e33ff436c9558514038d53de4a58844b"
+}

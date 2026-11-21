@@ -1,0 +1,24 @@
+﻿name: bainp-app
+
+services:
+  db:
+    image: postgres:17-bookworm
+    environment:
+      POSTGRES_DB: bainp
+      POSTGRES_USER: bainp
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Database password is required}
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - bainp_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bainp -d bainp"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 10s
+    mem_limit: 512m
+    cpus: 1.0
+
+volumes:
+  bainp_postgres_data:

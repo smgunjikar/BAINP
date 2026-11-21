@@ -1,0 +1,77 @@
+<!-- BAINP_NCX_REDESIGN_V1 -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>NeuroCognition · BAINP</title>
+  <link rel="stylesheet" href="/nc-connected.css">
+  <script type="module" src="/nc-workspace.js"></script>
+</head>
+<body class="ncx-ui ncx-workspace-body">
+  <div class="nc-shell">
+    <aside class="nc-sidebar" aria-label="BAINP navigation">
+      <div class="nc-brand">
+        <div class="nc-brand-mark">BAINP 3.0</div>
+        <div class="nc-brand-sub">Brain Health Intelligence Platform</div>
+      </div>
+      <nav class="nc-sidebar-nav">
+        <a data-base="/" href="/">Overview</a>
+        <a data-base="/neurocontinuum" href="/neurocontinuum">NeuroContinuum</a>
+        <a data-base="/neuroquest" href="/neuroquest">NeuroQuest</a>
+        <a data-base="/cognition-dashboard" href="/cognition-dashboard" class="active">NeuroCognition X</a>
+        <a data-base="/neurovision" href="/neurovision">NeuroVision</a>
+        <a data-base="/neuropulse" href="/neuropulse">NeuroPulse</a>
+        <a data-base="/neurosense" href="/neurosense">NeuroSense</a>
+        <a data-base="/neurotwin" href="/neurotwin">NeuroTwin X</a>
+        <a data-base="/neuroguard" href="/neuroguard">NeuroGuard</a>
+        <a data-base="/careloop" href="/careloop">CareLoop</a>
+      </nav>
+      <div class="nc-sidebar-footer">
+        <a data-base="/settings" href="/settings">Settings</a>
+        <a data-base="/help" href="/help">Help & Support</a>
+      </div>
+    </aside>
+    <div class="nc-page">
+      <div class="nc-page-topbar">
+        <div class="nc-page-chip">NeuroCognition X</div>
+        <div class="nc-page-chip subtle">Connected questionnaires, daily plan and records</div>
+      </div>
+      <main class="connected">
+        <header>
+          <p>BAINP · NEUROCOGNITION</p>
+          <h1>Your assessments and daily plan</h1>
+          <p id="identity"></p>
+          <nav>
+            <a id="journey">Guided journey</a>
+            <a id="tests">Cognitive results</a>
+            <a id="care">Care & follow-up</a>
+          </nav>
+        </header>
+        <p id="status" role="status" aria-live="polite">Loading…</p>
+        <section><h2>My optional data permissions</h2><p>Choose each scope separately. Turning a scope off hides retained records and prevents new collection and export. You can delete individual optional records. A minimal safety-review event from a safety-relevant PHQ-9 response is retained for automatic-plan restrictions; deleting the questionnaire does not clear it. This release cannot verify clinician clearance.</p><form id="permissions"><div id="permission-fields"></div><button>Save permissions</button></form></section>
+        <div class="columns"><section><h2>Daily context</h2><p>These are reported conditions, not a diagnostic score. A high fatigue/pain report pauses automatic test suggestions. Acute warnings take priority over testing.</p><form id="daily"><label>Fatigue, 0–10 <input id="fatigue" type="number" min="0" max="10" required></label><label>Sleep hours <input id="sleep" type="number" min="0" max="24" step="0.1" required></label><label>Pain, 0–10 <input id="pain" type="number" min="0" max="10" required></label><label><input id="function-change" type="checkbox">New difficulties with everyday activities</label><label><input id="acute" type="checkbox">Possible acute warning or sudden neurological change</label><label>Preferred follow-up length<select id="prefer"><option value="quick">Quick: attention, symbol matching and function</option><option value="core">Core: memory, attention, executive function and function</option><option value="extended">Long: core plus extended cognitive tasks</option></select></label><button>Save context and update plan</button></form></section><section><h2>My next assessment</h2><div id="plan"></div><button id="launch">Start currently eligible plan</button><p>First visits use the core protocol. Follow-up offers your preferred length when current preparation permits. The 24-hour burden interval is an engineering policy, not a clinical recommendation. Your existing guided journey remains available.</p></section></div><section><h2>Separate screening and function questionnaires</h2><p>Choose a topic below. Each option opens an existing research questionnaire or an external-result entry; it does not establish a diagnosis.</p><nav id="pathway-shortcuts" aria-label="Separate research screening pathways"></nav><p>Adult English pathways. Screening results support further assessment; they do not diagnose a condition. Licensed external instruments retain their official wording and administration outside this form.</p><label>Choose pathway<select id="instrument"></select></label><div id="instrument-info"></div><form id="screen"><div id="taps-branch" hidden><label>Applicable original alcohol item (select with clinical guidance if unsure)<select id="alcohol-item"><option value="">Select</option><option value="male_original">Original item for males: 5 or more drinks</option><option value="female_original">Original item for females: 4 or more drinks</option></select></label><p>One standard drink in the original form is about 5 oz wine, 12 oz beer or one single shot of liquor. The original branching has not been validated here for every gender or clinical situation.</p></div><div id="questions"></div><label>How difficult have the reported problems made work, home responsibilities or relationships?<select id="difficulty" required><option value="">Select</option><option value="not_difficult">Not difficult at all</option><option value="somewhat">Somewhat difficult</option><option value="very">Very difficult</option><option value="extremely">Extremely difficult</option><option value="not_applicable">Not applicable</option></select></label><label><input id="understood" type="checkbox" required>I understand the English questions and response timeframe.</label><div id="external-fields"><label><input id="external-completed" type="checkbox">The original official instrument was completed separately.</label><label><input id="rights" type="checkbox">I confirm appropriate usage rights for that external instrument.</label><label>External administration reference, date or document identifier<input id="external-ref" maxlength="200"></label></div><button>Calculate and save result</button></form><div id="latest-result" role="status"></div></section><section><h2>My results dashboard</h2><div id="overview"></div><h3>Screening history</h3><div id="screen-history"></div><h3>Daily context history</h3><div id="daily-history"></div><h3>Facial measurement summaries</h3><div id="camera-history"></div><button id="export">Export permitted questionnaire, daily and camera records</button><p>Cognitive trial/session export remains available through Cognitive results. No disease probability is calculated by combining these sources.</p></section><div id="camera-mount"></div><section><h2>Other concerns</h2><p>For sleep, non-alcohol substance use and concerns without a licensed screening instrument, record the issue for review. This does not generate a validated screening score.</p><form id="context"><label>Concern<select id="domain"><option value="sleep">Sleep</option><option value="substance_use">Other substance use</option><option value="other">Other</option></select></label><label>Impact<select id="impact"><option value="none">None reported</option><option value="some">Some</option><option value="substantial">Substantial</option><option value="prefer_not_to_say">Prefer not to say</option></select></label><label>Change<select id="change"><option value="unknown">Unknown</option><option value="new">New</option><option value="ongoing">Ongoing</option><option value="improving">Improving</option></select></label><label>Notes<textarea id="note" maxlength="1000"></textarea></label><label><input id="consent" type="checkbox" required>I agree to store this optional report.</label><button>Save concern</button></form><div id="reports"></div></section>
+      </main>
+    </div>
+  </div>
+  <script>
+  (function(){
+    const qs = new URLSearchParams(location.search);
+    const keep = new URLSearchParams();
+    ['mode','person'].forEach((k)=>{ const v = qs.get(k); if (v) keep.set(k,v); });
+    document.querySelectorAll('.nc-sidebar a[data-base]').forEach((a)=>{
+      const base = a.getAttribute('data-base') || a.getAttribute('href');
+      a.setAttribute('href', keep.toString() ? base + '?' + keep.toString() : base);
+    });
+    const path = location.pathname;
+    document.querySelectorAll('.nc-sidebar a[data-base]').forEach((a)=>{
+      const base = a.getAttribute('data-base');
+      const active = (path === '/neurocognition' || path === '/cognition-dashboard' || path === '/cognition-results' || path === '/cognition')
+        ? base === '/cognition-dashboard'
+        : path === base;
+      if (active) a.classList.add('active');
+    });
+  })();
+  </script>
+</body>
+</html>

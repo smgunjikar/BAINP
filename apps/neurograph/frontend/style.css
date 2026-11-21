@@ -1,0 +1,35 @@
+:root { color-scheme: light; font-family: system-ui, sans-serif; color: #19313a; background: #f0f5f5; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; }
+main { max-width: 78rem; margin: auto; padding: clamp(1rem, 3vw, 3rem); }
+header, nav, .actions { display: flex; flex-wrap: wrap; gap: .75rem 1rem; align-items: center; }
+header { justify-content: space-between; padding-bottom: 1rem; border-bottom: 1px solid #a8c1c5; }
+h1 { font-size: clamp(2rem, 6vw, 3.8rem); letter-spacing: -.045em; line-height: 1.05; margin: .45rem 0; }
+h1 span { color: #497a80; }
+h2, h3 { line-height: 1.2; }
+p, li { line-height: 1.5; }
+a { color: #0d5963; text-underline-offset: .15em; }
+.hero { padding: 2rem 0 1rem; }
+.eyebrow { font-size: .76rem; font-weight: 700; letter-spacing: .12em; color: #3a6b73; margin: 0; }
+section, article { background: white; padding: clamp(.85rem, 2vw, 1.4rem); border: 1px solid #bdd1d4; border-radius: .65rem; margin-bottom: 1rem; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: .9rem; margin-top: 1rem; }
+.cards article { margin: 0; display: flex; flex-direction: column; align-items: flex-start; gap: .4rem; overflow-wrap: anywhere; }
+article h3, article p { margin: .2rem 0; }
+article button { margin-top: auto; }
+.urgent { border-color: #c47566; background: #fff7f1; }
+#safetyStatus { font-weight: 700; color: #802a1a; }
+fieldset { display: flex; flex-wrap: wrap; gap: .7rem 1.25rem; border: 1px solid #c6a698; }
+.inputs { display: grid; gap: .7rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); margin-bottom: 1rem; }
+.inputs label { display: flex; flex-direction: column; gap: .2rem; }
+button, select, input { font: inherit; }
+button, select, input:not([type=checkbox]) { max-width: 100%; border: 1px solid #748f94; padding: .48rem .65rem; border-radius: .35rem; background: white; color: inherit; }
+button { cursor: pointer; font-weight: 600; }
+button:disabled { cursor: default; opacity: .55; }
+:focus-visible { outline: 3px solid #116b80; outline-offset: 2px; }
+.badge { display: inline-block; background: #e2eeee; color: #24565e; border-radius: .4rem; font-size: .83rem; padding: .26rem .5rem; }
+.verdict { font-weight: 700; }
+.accept { color: #21634b; }
+.abstain { color: #754800; }
+.block, .escalate { color: #982e27; }
+.small { color: #425c64; font-size: .9rem; }
